@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  BOM(Browser Object Model)浏览器对象模型   浏览器厂商在各自浏览器定义的,兼容性较差
+      把 浏览器 当做一个 对象            
+      BOM的顶级对象 window(窗口)                window在调用的时候可以省略
+        1 它是js访问浏览器窗口的一个接口
+        2 它是全局变量,定义在全局作用域中的变量、函数都会变成window对象的属性和方法
+        3 window.name 是window的一个特殊属性
+      BOM学习的是浏览器窗口交互的一些对象
+  <!-- <script>
+    var num = 10;
+    console.log(window.num)
+    function fn() {
+      console.log('22')
+    }
+    fn()
+    window.fn()
+    console.dir(window)
+  </script> -->
+
+  window.onload 窗口(页面)加载事件,当文档内容(脚本文件、css等)加载完成触发该事件   传统方式 
+        有了该事件就可以把js代码写在文档的任意位置
+        window.onload传统注册事件只能写一次,如果有多个,以最后一个为准   addEventListener则没有限制
+        window.onload = function() {}       // 注册事件
+        window.addEventListener('load', function(){})
+
+  DOMContentLoaded 是DOM加载完毕后,不包含图片、css等就可以执行    而load是全部加载完毕后,才能执行
+      document.addEventListener('DOMContentLoaded',function(){})
+
+
+  window.onresize 调整窗口大小加载事件,触发就调用这个函数   
+      window.innerWidth  当前浏览器的宽度
+  <!-- <script>
+    // window.onload = function() {
+      window.addEventListener('load', function() {  // script代码写在上面的代码
+      var div = document.querySelector('div')
+      window.addEventListener('resize', function() {
+        console.log(window.innerWidth)
+        console.log(window.innerHeight)
+        if (innerWidth < 800) {
+          div.style.display = 'none'
+        } else {
+          div.style.display = 'block'
+        }
+      })
+    })
+  </script>
+  <div style="width: 100px; height: 100px; background-color: hotpink;"></div> -->
+
+</body>
+</html>

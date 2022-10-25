@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 通过className更改元素样式 */
+    /* .change {
+      background-color: purple;
+      color: #fff;
+      font-size: 25px;
+    } */
+
+
+
+  </style>
+</head>
+<body>
+  DOM 文档对象模型(Document Object Model 简称DOM) w3c组织推荐可处理可扩展标记语言(html)的标准编程接口
+  w3c定义一系列DOM接口 这些DOM接口可以改变网页内容、结构和样式
+
+  文档(document)页面从上往下加载 所有先有标签 script写在标签下面
+
+  DOM树
+    文档: 一个页面就是一个文档 DOM中使用Document表示
+    元素: 页面中所有元素都是元素 DON中使用element表示
+    节点: 网页中所有内容都是节点(标签 属性 文本 注释) DOM中使用node表示
+
+  DOM操作  总结
+  <!-- 1 创建 innerHTML createELement
+  2 增   appendChild后面添加 insertBefore前面添加(自定义添加)
+  3 删   removeChild
+  4 改   修改dom元素属性
+          修改元素属性 src href title
+          修改普通元素内容  innerHTML innerText
+          修改表单元素 value type disabled
+          修改元素样式 style className
+  5 查   查询dom元素
+          DOM提供api方法:getElementById、getElementsByTagName  方法古老 不推荐
+          h5提供新方法:querySelector querySelectorAll 提倡
+          节点操作获取元素:父(parentNode) 子(children) 兄(previousElementSibling 、nextElementSibling)
+  6 属性操作 自定义属性
+              设置dom属性值 setAttribute 
+              得到dom属性值 getAttribute
+              移除属性      removeAttribute
+  7 事件操作 事件源.事件类型 = 事件处理函数 -->
+
+
+  获取网页 元素
+    根据ID获取      element.getElementById('id');
+    <p>
+      1 get(获取) element(元素) by(通过)  驼峰命名法
+      2 参数 id是大小写敏感的字符串
+      3 返回结果是 元素对象(Object)
+      <!-- <div id="time">hello</div>
+      <script>
+        var timer = document.getElementById('time')
+        console.log(timer)    
+        console.log(typeof timer)   // typeof 检测数据类型
+        console.dir(timer)          // 返回的是元素对象
+      </script> -->
+    </p>
+    根据标签名获取      getElementsByTagName('')    标签名有很多个 Element(元素)加s
+    <p>
+      1 通过By 便签Tag 名Name 获取get 很多元素Elements
+      2 返回的是 元素对象的集合 以伪数组的形式存储    伪数组(可以获取数组长度和索引号 不能使用数组的方法)
+      3 得到的元素对象是动态的
+      4 页面只有一个li 返回的还是以伪数组的形式
+      5 页面没有这个元素 返回的是空的伪数组形式
+      <!-- <ul id="ulId">
+        <li>1</li>
+        <li>2</li> 
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+      </ul>
+      <script>  
+        var lis = document.getElementsByTagName('li')   // 获取页面所有的li元素
+        console.log(lis)
+        console.log(lis[0])         // 索引号为0 的li
+        // 打印里面的li
+        for(var i = 0;i < lis.length;i++) {
+          console.log(lis[i])
+        }
+
+        // 获取某个元素(父元素)内部所有指定标签名的子元素(li)   获取指定的子元素
+        // 父元素: 必须是单个对象(指明哪一个元素对象)
+        // 方法1
+          var ul = document.getElementsByTagName('ul')
+          console.log(ul[0].getElementsByTagName('li'))   // ul[0]表示父元素 指明是第一个元素
+        // 方法2
+          var ul1 = document.getElementById('ulId')   // 通过id指定那一个父元素
+          console.log(ul1.getElementsByTagName('li'))  
+      </script> -->
+
+    </p>
+    通过HTML5新增的方法获取   根据类名获取   getElementsByClassName('')
+                            返回指定选择器的第一个对象    querySelector('') 询问 选择器  (支持ie9以上)
+                            返回指定选择器的所有元素      querySelectorAll('')
+    <p>
+      <!-- <div class="box">1</div>
+      <div class="box">2</div>
+      <div id="nav">
+        <ul>
+          <li>3</li>
+          <li>4</li>
+        </ul>
+      </div>
+      <script>
+        var boxs = document.getElementsByClassName('box')
+        console.log(boxs)
+
+        var box1 = document.querySelector('.box')   // 类选择器
+        var box2 = document.querySelector('#nav')   // id选择器
+        var box3 = document.querySelector('li')     // 标签选择器
+        console.log(box1, box2, box3)
+
+        var allBox = document.querySelectorAll('.box')
+        var allLi = document.querySelectorAll('li')
+        console.log(allBox, allLi)
+        
+      </script> -->
+    </p>
+    特殊元素获取    body元素    html元素
+    <p>
+      <!-- <script>
+        // 1 获取body元素
+        var bodyElement = document.body;
+        console.log(bodyElement)
+        console.dir(bodyElement)    // 返回body元素对象
+        // 2 获取html元素
+        // var htmlElement = document.html;    // undefined 变量未赋值(未定义)
+        var htmlElement = document.documentElement;
+        console.log(htmlElement)
+      </script> -->
+    </p>
+
+  事件基础  (事件简单理解:触发事件--响应机制)
+    事件三要素: 事件源 事件类型 事件处理程序        谁触发 怎么触发 触发后执行什么
+              获取(元素)事件源 注册事件(绑定事件) 添加事件处理程序(采取函数赋值的方式)
+    <p>
+      <!-- <button id="btn">按钮</button>
+      <script>
+        // 1 事件源 事件被触发的对象   谁 按钮
+        var btn = document.getElementById('btn')
+        // 2 事件类型 如何触发事件 比如:鼠标点击(onclick) 鼠标经过 键盘按下
+        // btn.onclick
+        // 3 事件处理程序 通过函数赋值的方式 完成
+        btn.onclick = function() {    // btn事件源 onclick事件类型 事件处理方式function(){} 函数表达式(匿名函数)
+          alert('.')
+        }
+        
+      </script> -->
+    </p>
+
+
+  操作元素  (DOM操作可以修改网页内容、结构和样式 属性)      核心
+  <p>
+    改变元素内容   element.innerText   起始到终止位置的内容,去除html标签,同时空格和换行也去掉
+                  element.innerHTML    起始到终止位置的内容,包含html标签,保留空格和换行         常用
+    <span>
+      <!-- <button>按钮</button>
+      <div>2022年5月1日18:19:35</div>
+      <script>
+        // 1 获取元素   事件源
+        var btn = document.querySelector('button')    // 指定第一个选择器
+        var div = document.querySelector('div')    // 指定所有的div选择器
+        // 2 注册事件   事件类型
+        btn.onclick = function() {
+          // 3 事件处理方式
+          div.innerText = getDate()
+        }
+        // 声明一个日期函数
+        function getDate() {
+          var date = new Date();
+          var year = date.getFullYear();
+          var month = date.getMonth() + 1;
+          var date1 = date.getDate();
+          var arr = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六',]
+          var day = date.getDay();      // 返回的是0,1,2,3,4,5,6    arr[day] 取数组第day个
+          return year + '年' + month + '月' + date1 + '日' + arr[day];
+        }
+      </script> -->
+    </span>
+    
+    innerText innerHTML 区别
+    <!-- <li>
+        <div>我是文字</div>
+        <em>123</em>
+      </li>
+      <script>
+        // innerText 不识别html标签 会去掉空格和换行  非标准
+        var div = document.querySelector('div');
+        // div.innerText = '<strong>今天</strong> 2022'
+        // innerHTML 识别html标签 不去掉空格和换行
+        div.innerHTML = '<strong>今天</strong> 2022'
+        // 俩个属性可读写 获取里面的元素
+        var li = document.querySelector('li')
+        console.log(li.innerText)
+        console.log(li.innerHTML)
+      </script> -->
+
+    操作元素之修改元素属性
+      demo    innerHTML修改元素内容(文字)  src href  title
+
+    表单属性设置 input        innerHTML只能用在普通盒子上(div) 不能用在input上面
+      demo    type类型属性 value值属性 checked选择的 disabled表单是否被使用   
+      <!-- <button>按钮</button>
+      <input type="text" value="内容..">
+      <script>
+        // 1 获取元素
+        var button = document.querySelector('button')
+        var input = document.querySelector('input')
+        // 2 注册事件 
+        button.onclick = function() {   // 按钮被点击后 用函数表达式
+          // 3 函数处理方式
+          // input.innerHTML = '点击'  // innerHTML只能用普通盒子 input里面不起作用
+          input.value = '点击了'
+          // 点击一次后 禁用按钮
+          button.disabled = true;
+          // this.disabled = true;      // this 指向事件函数的调用者
+        }
+      </script> -->
+  
+    样式(style)属性设置 (大小 颜色 位置等属性)      js修改了样式 会生成行内样式 比css内嵌式样式权限高   
+      element.style         行内样式修改(修改的少 用这个)
+      element.className     类名样式修改
+    通过className更改元素样式   添加css属性   注意:1 class是保留字,所以用className  2 会覆盖原来的类名
+      <!-- <div class="first" style="width: 200px; height: 200px; background-color: aqua;"></div>
+      <script>
+        // 1 获取元素
+        var div = document.querySelector('div')
+        // 2 注册事件
+        div.onclick = function() {
+          // 3 事件处理方式
+          div.style.backgroundColor = 'red'     // 修改颜色
+          div.style.width = '250px'             // 修改宽度
+          this.style.marginTop = '100px'        // 修改距离
+          // 上面代码可以替换为   相当于 div加了class="change"
+          // div.className = 'change'
+          // 保留原来的类名方法
+          div.className = 'first change'
+        }
+      </script> -->
+  </p>
+
+  
+  排他思想(算法)          btns[i]是伪数组  里面的每一个元素是btns[i]
+  <!-- <button>1按钮</button>
+  <button>2按钮</button>
+  <button>3按钮</button>
+  <button>4按钮</button>
+  <button>5按钮</button>
+  <script>
+    // 获取全部按钮
+    var btns = document.getElementsByTagName('button')
+    // btns[i]是伪数组  里面的每一个元素是btns[i]
+    for (var i = 0;i < btns.length;i++){
+      btns[i].onclick = function() {
+        for (var i = 0;i < btns.length;i++) {
+          // 1 先把所有的按钮颜色清空
+          btns[i].style.backgroundColor = ''
+        }
+        // 2 再把按下的按钮换颜色
+        this.style.backgroundColor = 'pink'
+      }
+    } 
+  </script> -->
+
+
+  自定义属性操作       
+     1 获取属性值    元素(element).属性  (元素本身自带的属性)
+                    element.getAttribute('属性');(程序员自定义属性)  date-属性名(规范命名)    Attribute(属性)
+     2 设置属性值    element.属性 = '值'
+                    element.setAttribute('属性','值') (自定义属性)
+     3 移除属性      element.removeAttribute('属性')
+  <!-- <div id="demo" class="nav" index='1'></div> 
+  <script>
+    // 1 获取元素属性值 element.属性  获取属性值      index='1'自定义属性
+    var div = document.querySelector('div')
+    console.log(div.id)
+    //  element.getAttribute('属性');
+    console.log(div.getAttribute('id'))
+    console.log(div.getAttribute('index'))
+    // 2 设置元素属性值   element.属性 = '值'
+    div.id = 'test';            // 修改元素id名
+    div.className = 'navs'      // 修改元素类名
+    // element.setAttribute('属性','值')  针对自定义属性
+    div.setAttribute('index',2);            // 修改自定义属性
+    div.setAttribute('class', 'navs2')      // 修改class属性 这里用class
+    // 3 移除属性      element.removeAttribute('属性')
+    div.removeAttribute('index')      // 移除index属性
+  </script> -->
+      
+      h5自定义属性目的(只能是data-开头的):为了保存并使用数据,有些数据不需要保存到数据库里面 比如 索引号='0'
+        用 元素.属性 获取自定义属性返回的是 undefined
+        data-属性名 程序员自定义的属性
+          dataset是一个集合里面存放了所有以data-开头的自定义属性
+          <!-- <div data-index="1" data-last-name='ni'></div>
+          <script>
+            var div = document.querySelector('div')
+            // 获取对象  自定义属性里面的元素    里面的属性必须是data-开头的(自定义属性)
+            console.log(div.dataset.index)    
+            console.log(div.dataset['index'])
+            // 自定义属性有多个链接单词 获取采取驼峰命名法
+            console.log(div.dataset.lastName)
+            console.log(div.dataset['lastName'])
+          </script> -->
+ 
+</body>
+</html>

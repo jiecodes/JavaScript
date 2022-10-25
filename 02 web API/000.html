@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BOM</title>
+</head>
+<body>
+  数字型是蓝色
+  字符串黑色
+
+  定时器 清除前面的延迟方法 
+      1 把定时器封装成一个函数 在函数开始前调用函数
+      2 div.innerHTML = '您将在6s跳转'    给需要需要改的前面加 innerHTML        2-2-1 5秒后自动跳转页面
+
+  split('分隔符') 把字符串分隔成数组                                            2-2-1 获取URL参数
+  substr('起始位置','截取的字符') 截取字符串
+
+  ctrl+f5  强制刷新页面 
+  
+  element.onclick = function(){}      注册事件         里面的函数也是回调函数
+  element.addEventListener('click', function() {})    里面的函数也是回调函数2-2 location对象 常见方法 
+
+  position: fixed;    让盒子在页面水平垂直居中 固定定位                          3-1-1 拖拽模态框(登录框)
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  cursor: move; 鼠标变成移动的
+
+  opacity: .5;   半透明效果                                                    3-1-1   仿京东放大镜
+  overflow:hidden;  溢出隐藏
+  
+  ; 俩个立即执行函数加分号,表示独立的俩个函数                                     立即执行函数                            
+  
+  overflow: auto;   移除显示滚动条                                             3-1 元素滚动 scroll 系列
+
+  window.pageYOffset 页面被卷去的头部 page页面   parseInt() 返回整数            3-1-1  淘宝固定右侧侧边栏     scroll
+
+  Math.ceil 往大取整                                                          3-1 缓动动画  
+
+  mouseenter(鼠标移入) mouseleave(鼠标离开)            没有冒泡                 3-1 动画函数的使用
+
+  cursor: pointer; 鼠标变成小手
+
+  事件委托 排他思想
+
+</body>
+</html>

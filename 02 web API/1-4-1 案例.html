@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* <!-- 隐藏鼠标 --> */
+    /* * {
+      cursor: none;
+    } */
+  
+    /* 京东快递单号放大 */
+    .search  {
+      position: relative;
+    }
+    .con {
+      display: none;
+      position: absolute;
+      top: 3px;
+      left: 0;
+      width: 208px;
+      height: 32px;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 4px  rgba(0, 0, 0, .2);
+      size: 20px;
+      line-height: 32px;
+    }
+    input {
+      margin: 42px 0 0 7px;
+    }
+    .con::before {
+      content: '';
+      position: absolute;
+      top: 32px;
+      left: 11px;
+      border: 8px solid #000;
+      border-style: solid dashed dashed;
+      border-color: #fff  transparent transparent  transparent;
+    }
+  </style>
+</head>
+<body>
+  鼠标事件对象    mousemove(鼠标移动)     绝对定位不占位置    *{cursor:none}隐藏鼠标
+  核心原理: 每次移动鼠标 都会获得新的鼠标坐标 把鼠标坐标x和y轴给图片的top和left 值就可以移动图片
+  <!-- <img src="./image/angel.gif" alt="" style="position: absolute;">
+  <script>
+    var img = document.querySelector('img')
+    document.addEventListener('mousemove', function(e) {
+      console.log(1)
+      var x = e.pageX;
+      var y = e.pageY;
+      img.style.left = x - 35 + 'px'
+      img.style.top = y - 40 + 'px'
+    })
+  </script> -->
+
+  按s聚集光标     搜索框获取焦点,使用方法 事件.focus()
+  <!-- <input type="text">
+  <script>
+    // 1 获取元素 
+    var input = document.querySelector('input')
+    // 2 注册事件
+    document.addEventListener('keyup', function(e) {      // keypu 键盘弹起触发
+      if(e.keyCode === 83) {    // ascii码值为83时
+      // if(e.key === 's') {    // ascii码值为s时
+      console.log(e.keyCode)
+      console.log(e.key)
+        // 3 事件处理方式
+        input.focus();      // 输入框聚集光标
+      }
+    })
+  </script> -->
+
+  京东快递单号放大  把输入框里面的值(value)获取过来赋值给 con盒子(innerText)做为内容
+                  快递单号为空 隐藏盒子
+  <div class="search">
+    <div class="con"></div>
+    <input type="text" placeholder="输入单号" class="jd">
+  </div>  
+  <script>
+    // 1 获取元素
+    var con = document.querySelector('.con')
+    var input = document.querySelector('input')
+    // 2 注册事件     keyup键盘弹起
+    input.addEventListener('keyup', function() {
+      // 点击输入框 让隐藏盒子显示 把输入框的值给div里面的value
+      if (input.value == '') {
+        con.style.display = 'none'
+      } else {
+        con.style.display = 'block'
+        con.innerText = input.value   // 输入框里面的值 赋值 给con盒子(innerText)
+      }
+      // 输入框失去焦点 让.con盒子隐藏
+      input.addEventListener('blur', function() {
+        con.style.display = 'none'
+      })
+      // 输入框获得焦点 判断如果输入框不是为空 让盒子显示
+      input.addEventListener('focus', function() {
+        if (input.value !== '') {
+          con.style.display = 'block'
+        }
+      })
+    })
+  </script>
+
+
+
+</body>
+</html>

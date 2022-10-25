@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+
+  </script>
+</head>
+<body>
+  JavaScript作用域: 代码名字(变量)在某个范围内起作用和效果 (在这个范围起效果 出了这个范围就不起效果)
+    目的:提到程序的可靠性 更重要的是减少命名冲突
+  JavaScript的作用域(ECMAScript es6之前) 
+    全局作用域: 整个script标签 或者一个单独的js文件
+      var num = 10;
+      console.log(num)
+    局部作用域: 在函数内部就是局部作用域 这个代码的名字只在函数的内部起效果和作用
+      function fn() {
+        // 局部作用域
+        var num = 20;
+        console.log(num) 
+      }
+      fn();
+
+  变量的作用域
+    全局变量: 在全局作用域下的变量 在全局下都可以使用
+      什么是全局变量: 在全局作用域下var声明的变量  特殊情况下,局部变量未使用var声明的变量
+      var num = 10;   // num 就是一个全局变量
+      function fn() {
+        console.log(num)
+      }
+      fn();
+    局部变量: 在局部作用域下的变量 或者函数内部的变量就是局部变量
+      什么是局部变量:  在局部作用域下用var声明的变量
+      aru 函数的形参也可以看做是局部变量
+      function fn(aru) {
+        var num1 = 20;   // num 就是局部变量 只能在函数内部使用
+        num2 = 30;        // 未声明的变量 也是全局变量(不论是在全局、局部作用域)
+      }
+      fn()
+      console.log(num1)   // 会报错 定义的局部变量 外边不能使用
+      console.log(num2)   // 正确
+    执行效率 局部变量和全局变量
+      全局变量: 只有浏览器关闭才会销毁
+      局部变量: 程序执行完毕就会销毁
+
+  JavaScript在(ECMAScript es6)之前没有块级作用域
+    块级作用域:  用{}进行包裹的 就叫块级作用域
+  
+  作用域链: 只要是代码就有作用域
+    链式查找: 内部函数访问外部函数的变量 采取的是链式查找的方式决定那个值(就近原则)
+    var num = 10;
+    function fn() {
+      var num = 20;
+      function fun() {
+        console.log(num)    // 结果为20 采取链式查找  站在目标出发,一层一层往外找
+      }
+      fun()   // 只有调用了才会执行代码
+    }
+    fn()
+    
+    
+</body>
+</html>

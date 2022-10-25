@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    a {
+      text-decoration: none;
+      color: black;
+    }
+    body {
+      width: 100%;
+      height: 100%;
+      background-color: #ccc;
+    }
+    .nav {
+      position: relative;
+      top: 0;
+      left: 0;
+      width: 800px;
+      height: 50px;
+      background-color: #fff;
+      margin: 100px auto;
+      line-height: 50px;
+    }
+    .cloud {
+      position: absolute;
+      top: 5px;
+      left: 0;
+      width: 83px;
+      height: 42px;
+      background: url(./image/cloud.gif) no-repeat ;
+    }
+    ul {
+      /* 解决图片压住文字的问题 */
+      position: absolute;
+    }
+    li {
+      float: left;
+      list-style: none;
+      padding: 0 40px;
+    }
+    a:hover {
+      color: #fff;
+    }
+    .current {
+      color: red;
+    }
+  </style>
+  <script src="./js/animate.js"></script>
+</head>
+<body>
+  <script>
+    window.addEventListener('load', function() {
+      var nav = document.querySelector('.nav')
+      var cloud = document.querySelector('.cloud')
+      var lis = document.querySelectorAll('li')
+      // 当前位置为0
+      var current = 0;    
+      // 获取当前点击的是哪个li
+      for (var i = 0;i < lis.length;i++) {
+        // 鼠标移入
+        lis[i].addEventListener('mouseover', function() {
+          // 使用动画
+          animate(cloud, this.offsetLeft)
+        })
+        // 鼠标离开 out
+        lis[i].addEventListener('mouseout', function() {
+          animate(cloud, current)
+        })
+        lis[i].addEventListener('click', function() {
+          current = this.offsetLeft    // 点击的li距离有定位的父元素最左边的距离
+        })
+      }
+    })
+  </script>
+  <div class="nav">
+    <span class="cloud"></span>
+    <ul>
+      <li><a href="#" class="current">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#">4</a></li>
+      <li><a href="#">5</a></li>
+      <li><a href="#">6</a></li>
+      <li><a href="#">7</a></li>
+      <li><a href="#">8</a></li>
+    </ul>
+  </div>
+</body>
+</html>

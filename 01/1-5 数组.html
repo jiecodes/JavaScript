@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    // 数组[2,6,1,7,4] 和 平均值
+    // var arr = [2,6,1,7,4]
+    // var sum = 0;
+    // var average = 0;
+    // for (var i = 0;i < arr.length;i++) {
+    //   sum = sum + arr[i]    // arr[i]数组元素 不是计数器i
+    // }
+    // average = sum / arr.length  // 数组的个数
+    // console.log(sum, average)   // 输出多个值 之间用,隔开
+
+    // 数组中的最大值
+    // var arr = [2,44,53,43,54,23,1 ]
+    // var max = arr[0];
+    // for (var i = 1;i <= arr.length;i++ ) {   // i 表示第几个的索引号 计数器
+    //   if (arr[i] > max) {     // 如果数组第i个值 大于max
+    //     max = arr[i];         // 则把数组中第i个值 赋值给max
+    //   }
+    // }
+    // console.log(max)
+
+    // 将数组 ['red', 'blue', 'green', 'grey'] 转变为 字符串 并且以|相连      遍历数组
+    // var arr = ['red', 'blue', 'green', 'grey'];
+    // var str = '';
+    // for (var i = 0; i < arr.length;i++) {   // i表示索引号  计数器
+    //   if (i == arr.length-1 ) {
+    //     str = str + arr[i]
+    //   } else {
+    //     str = str + arr[i] + ' | '      // arr[i]遍历全部数组元素 赋值给str 然后拼接
+    //   }
+    // }
+    // console.log(str)
+    
+    // 创建一个1-10的数组             新增数组元素 追加数组元素
+    // var arr = [];
+    // for (var i = 0;i < 10;i++) {          // i 表示索引号
+    //   // arr = i;   // 不能直接给数组名赋值 他会覆盖里面的数组 变成数组名
+    //   arr[i] = i + 1;
+    // }
+    // console.log(arr);
+
+    // 方法1 筛选数组     把数组大于10的数组元素放入新数组中
+    // var arr = [2,3,4,33,6,44,55,2,6]
+    // var newArr = []
+    // var j = 0;
+    // for (var i = 0;i < arr.length;i++) {
+    //   if (arr[i] > 10) {      // 每个数组元素大于10
+    //     newArr[j] = arr[i];   // 新数组的索引应该从0开始 依次递增
+    //     j++;
+    //   }
+    // }
+    // console.log(newArr)
+    // 方法2 筛选数组 刚开始 newArr.length的索引号为0     newArr.length 解决数组中出现空数组占位置
+    // var arr = [2,3,4,33,6,44,55,2,6]
+    // var newArr = [];
+    // for (var i = 0;i < arr.length;i++) {
+    //   if (arr[i] > 10) {
+    //     newArr[newArr.length] = arr[i]    // newArr的索引号从0开始  依次递增  
+    //   }
+    // }
+    // console.log(newArr)
+
+    // demo1 筛选出 去除0的数组
+    // var arr = [2,0,3,4,33,6,0,44,0,55,20,6]
+    // var newArr = [];
+    // for (var i = 0;i < arr.length;i++) {
+    //   if (arr[i] !== 0) {
+    //     newArr[newArr.length] = arr[i]
+    //   }
+    // }
+    // console.log(newArr)
+
+    // demo2 把数组 ['red', 'blue', 'green', 'grey'] 里面的数组元素 翻转过来
+    // var arr = ['red', 'blue', 'green', 'grey']; 
+    // var newArr = [];
+    // for (var i = arr.length - 1;i >= 0;i--) {     // arr.length-1(索引号为3 表示第4个数组元素) arr数组元素总长度减一 就是arr数组的索引号
+    //   newArr[newArr.length] = arr[i]    // newArr.length(索引号为0) 新数组索引号第0个元素
+    // }
+    // console.log(newArr)
+
+    // demo3 冒泡排序
+    var arr = [5, 4, 3, 2, 1]
+    for (var i = 0;i <= arr.length - 1;i++) {     // 外层循环管 趟数    arr.length 数组长度5  arr.length-1 数组索引号4
+      for (var j = 0;j <= arr.length - 1 - i;j++) {   // 内层循环管 一趟循环几次    每一趟循环次数依次减1 arr.length-1-i  i开始0依次自增1
+        if (arr[j] > arr[j + 1]) {  // 第一个数和第二个数进行比较
+          var temp = arr[j];      // 交换两个变量   temp 临时变量
+          arr[j] = arr[j + 1]     // 交换两个变量
+          arr[j + 1] = temp       // 交换两个变量
+        }
+      }
+    }
+    console.log(arr)
+
+  </script>
+</head>
+<body>
+  数组[Array]   (变量) 一组数据的集合(存放在一起),每个数据被称做元素,在数组中可以存放任何类型的元素
+    创建数组
+      var arr = new Array();   // 用new 创建了一个空的数组
+      var arr = [];  // 用数组字面量创建数组  数组里面可以是任意数据类型 数组里面的1,2我们称为数组元素
+
+  获取数组元素
+    格式: 数组名[索引号] 索引号从0开始
+      数组可以通过索引来访问(获取) 设置 修改对应的数组元素
+      如果没有数组元素 会输出 undefined
+    数组的索引  用来访问数组元素的序号(数组下标从0开始)
+
+  遍历数组  把数组从头到尾访问一次
+    通过 "数组名[索引号]  把数组中的每一项取出来"   索引号从0开始
+      var arr = ['red', 'blue', 'green'];
+      for (var i = 0; i < 3;i++) {    // i=0 0表示索引号
+        console.log(arr[i])
+      }
+    数组长度  数组名.length   数组的长度是元素个数    arr.length 动态检测数组元素的个数   i是计数器
+
+  新增数组元素
+    修改 length长度
+      var arr = ['red', 'blue', 'green'];
+      arr.length = 5;   // 把数组的长度修改为5
+      console.log(arr[3]);    // 多出来 第4 5个数未给值 默认值undefined
+    修改索引号 追加数组元素
+      var arr = ['red', 'blue', 'green'];
+      arr[3] = 'grey';
+      console.log(arr);   // ['red', 'blue', 'green', 'grey']
+      arr[0] = 'yellow';
+      console.log(arr)    // 原先有的 会替换原先的数组元素 ['yellow', 'blue', 'green', 'grey']
+      arr = '你好';       // 不要直接给数组名赋值 否则里面的数组元素会被替换
+
+  冒泡排序
+    一种算法 把一系列数据按照一定顺序进行排列显示(从大到小 从小到大)
+    核心思想 每轮找出最大的数 放到数组右边
+    5 4 3 2 1
+    伪代码
+      外层for循环(趟数)
+        5个数据一共需要走4趟 长度就是数组长度-1(arr.length-1)
+      内层for循环(每一次交换的趟数)
+        第1趟交换4次
+        第2趟交换3次
+        第3趟交换2次
+        第4趟交换1次
+          长度就是数组长度 - 次数   次数从0次开始 (arr.length-1-i)  i表示次数
+        交换两个变量
+      
+    交换两个变量
+      var num1 = 12;
+      var num2 = 14;
+      var temp;     // temp 临时
+      temp = num1;
+      num1 = num2;    // num1转变
+      num2 = temp;    // num2转变
+      console.log(num1, num2)
+    
+ </body>
+</html>

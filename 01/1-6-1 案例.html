@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>  
+    // 翻转任意数组 用函数   reverse 翻转  封装函数
+    // function reverse(arr) {
+    //   var newArr = [];
+    //   for (var i = arr.length - 1;i >= 0;i--) {   // arr.length - 1 从索引为2的数组元素开始
+    //     newArr[newArr.length] = arr[i]    // newArr[newArr.length] 创建的开始新数组索引为0
+    //   }
+    //   return newArr;    // 输出新数组
+    // }
+    // var arr1 = reverse([1,2,3]);    // 函数名 reverse([1,2,3])  返回给arr
+    // console.log(arr1)
+
+    // 利用函数冒泡排序    sort 排序
+    // function sort(arr) {
+    //   for(var i = 0;i < arr.length - 1;i++) {   // 循环几趟
+    //     for(var j = 0;j < arr.length - i - 1;j++) {   // 一趟循环几次
+    //       if (arr[j] > arr[j + 1]) {
+    //         var temp = arr[j]         // temp 临时
+    //         arr[j] = arr[j + 1]
+    //         arr[j + 1] = temp
+    //       }
+    //     }
+    //   }
+    //   return arr;
+    // }
+    // var str = sort([4, 3, 2, 1]);
+    // console.log(str)
+
+    // 函数判断是否为闰年
+    // function isRunYear(year) {
+    //   // 如果是闰年返回真true   平年返回假 false
+    //   var flag = false;
+    //   if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) { // && 且 与   || 或
+    //     flag = true;
+    //   }
+    //   return flag;
+    // }
+    // console.log(isRunYear(2000))
+    // console.log(isRunYear(1999))
+
+    // 函数是可以相互调用的 
+    // // 执行思路: 函数从调用函数fn1()开始执行 所以从fn1()开始执行 然后到11 到fn2() 到22  整体从上到下执行函数
+    // function fn1() {
+    //   console.log(11)
+    //   fn2()   // 在fn1() 函数里面调用fn2函数
+    // }
+    // fn1()
+    // function fn2() {
+    //   console.log(22)
+    // }
+
+    
+    // 用户输入年份 输出当前年份2月有几天
+    function backDay() {
+      var year = prompt('输入年份')
+      if (isRunYear(year)) {        // 函数里面调用isRunYear()函数 为true
+        alert(year + ' 是闰年2月29天')
+      } else {
+        alert(year + ' 是平年2月28天')
+      }
+    }
+    backDay();
+    // 判断是否为闰年的函数
+    function isRunYear(year) {
+      // 如果是闰年返回true 否则返回false
+      var flag = false;
+      if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
+        flag = true;
+      }
+      return flag;
+    }
+    
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

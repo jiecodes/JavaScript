@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    // var age = prompt('输入年龄'); 
+    // var str = '你的年龄是' + age + '岁';
+    // alert(str);
+    // console.log(str);
+
+    var num = 10;     // typeof 判断数据类型
+    console.log(typeof num);  // number 数字类型
+
+    console.log(parseFloat('3.14pxssss')) // 字符串装换为浮点数
+
+    var year = prompt('输入出生年份');    // year 为字符串型的
+    var ages = 2022 - year;   // year 在这不需要装换为数字型的 因为用的是减号 有隐式转换
+    alert('今年' + ages + '岁了')
+
+    var num1 = prompt('输入一个数')  // prompt /pra:mpt/  
+    var num2 = prompt('输入第二个数')
+    var num3 = parseFloat(num1) + parseFloat(num2); // 用parseFloat 字符串转换数字 可能输入小数 所以用转换为浮点数
+    alert('结果是' + num3)
+
+    var num4 = prompt('姓名')
+    var num5 = prompt('年龄')
+    var num6 = prompt('性别')
+    alert('姓名' + num4 + '\n' + '年龄' + num5 + '\n' +'性别' + num6)
+    </script>
+</head>
+<body>
+  为什么需要存储类型
+    便于把数据分成所需内存大小不同的数据 充分利用存储空间
+  JavaScript是一种弱类型或动态语言  这意味着不用提前声明变量的类型 在运行过程中 类型会自动确认
+    变量的数据类型 根据=右边变量值的数据类型来判断
+      var age = 10;   // 这是一个数字型
+      var ages = '是';   // 这是一个字符串
+    JavaScript是动态语言 变量的数据类型是可以变化的
+      var x = 10;     // x 数字型
+      x = 'hello'     // x 字符串
+
+  数据类型分类
+    简单数据类型(基本数据类型)
+      数据类型  说明                               默认值               console
+      Number    数字型(整数型 浮点型) 21 0.23       0                   深蓝色
+      Boolean   布尔值类型  true false 等价于1 0    false               蓝色 
+      String    字符串类型 '你' 字符串都带引号       ""                  黑色
+      undefined var a;声明变量a但没给值 此时a=undefined undefined       浅灰色  未定义字符类型  
+      Null      var a = null; 声明变量a为空值       null                浅灰色  非数字
+        Number  数字型
+        <p>
+        进制
+        八进制 0-7 程序里面的数字前面加0 表示八进制 010
+          var num2 = 012;
+          console.log(num2);    
+        十六进制 0-9 a-f 程序里面的数字前面加0x 表示十六进制
+          var num3 = 0x9;
+          console.log(num3);
+          var num4 = 0xa;
+          console.log(num4);
+        数字型范围
+          JavaScript中数值最大值(Number.MAX_VALUE)
+          JavaScript中数值最小值(Number.MIN_VALUE)
+        数字型特殊值
+          Infinity 无穷大      console.log(Number.MAX_VALUE * 2) 
+          -Infinity 无穷小
+          NaN 缩写 Not a number   代表一个非数字  console.log('ni' - 100)
+        isNaN()   用于判断是否 非数字   返回一个值 如果是数字返回的是false 返回的不是数字则显示true
+          console.log(isNaN(123));  // false
+        </p>
+
+        String  字符串型  字符串转义符
+        <p>
+          字符串可以是引号中任意文本 语义为单引号 '' 双引号 ""
+          引号嵌套关系  (外双内单 内单外双)
+
+          字符串转义符    这些转义字符都写在引号里面的
+            \n    换行符  n(newline)新行
+            \\    斜杠
+            \'    单引号
+            \"    双引号
+            \t    tab缩进
+            \b    空格 b(blank)
+
+          检测获取字符串的长度  length
+            var str = 'my name is bb';
+            console.log(str.length) // 13
+          
+          字符串拼接 +    拼接方式:字符串+任何类型=拼接后的 字符串
+            alert('你'+hao)             // 你hao
+            console.log(12 + 12)        // 24
+            console.log('12' + 12)      // 1212
+            console.log('12' + '12')    // 1212
+            总结  数值相加 字符相连
+          
+          字符串拼接加强 
+            var age = 18;
+            console.log('他age岁了');
+            console.log('他' + age + '岁了');   // 变量不要写在字符串里面 通过和字符串相连的方式实现的
+        </p>
+
+        Boolean   相加结果
+        <p>
+          var flag = true;    // 布尔型
+          var flag1 = false;    // 布尔型
+          console.log(flag + 1)   // 2
+          console.log(flag + 1)   // 1
+          如果一个变量声明未赋值 就是undefined 未定义数据类型
+            var str;
+            console.log(str)    // undefined
+            var variable = undefined
+            console.log(variable)   // undefined 未定义数据类型(不确定是什么数据类型)
+            console.log(variable + 'abc')   // variableabc  字符串相连
+            console.log(variable + 1)   // NaN 非数字
+          null 空值
+            var space = null;
+            console.log(space + 'abc')  // spaceabc   字符串相连
+            console.log(space + 1 ) // 1
+        </p>
+
+        typeof 帮助我们检测获取变量数据类型
+        <p>
+          prompt 取过来的值 是字符串
+          var  age = prompt('输入年龄');
+          console.log(age);
+          console.log(typeof age);    // String
+        </p>
+
+        子面量 如何表达这个值
+        <p>
+          数字子面量: 8,9,10
+          字符串字面量: '你好','word'
+        </p>
+
+        数据类型转换
+        <p>
+          转换为字符串 黑色
+            1 数字类型转换为字符串  利用 + 拼接字符串的方式实现转换效果 隐式转换 重点
+              var num = 10;
+              console.log(num + '');
+            2 变量.toString()
+              var str = num.toString();
+              console.log(str)
+            3 String(变量)
+              console.log(String(num));
+
+          转换为数字型  深蓝色    重点
+            1 parseInt(变量)  字符串类型转换为数字类型 得到的是整数
+              var age = prompt('输入年龄')  // age为字符串
+              console.log(parseInt(age))   // 数字类型
+              console.log(parseInt(3.14))   //取整 3
+              console.log(parseInt(3.99))   //取整 3  不存在近位问题 切除小数点后面的
+              console.log(parseInt('120px')) // 120 去除单位
+            2 parseFloat(变量)  字符串类型转换为数字类型 得到的是小数 浮点数
+              console.log(parseFloat(3.14))   // 3.14 取小数
+              其他同上
+            3 Number(变量)
+              var str = '123';
+              console.log(Number(str));  //123
+              console.log(Number('12'))  // 12
+            4 算法运算 - * /    隐式转换
+              console.log('12' - 0)   // 12
+              console.log('123' - '120')  // 3
+              console.log('12' * 1) // 12
+
+          转换为布尔类型
+            代表空的 否定的值 如：'' 0 NaN null undefined为false      其他所有值为true
+              console.log(Boolean(''));   // false
+        </p>
+
+        扩展
+        <p>
+          程序语言翻译成机器语言的工具 称为翻译器
+          编程语言(js) ————>  翻译器 ————>  机器语言(二进制)
+
+          翻译器翻译的方式: 编译 解释 
+            编译器 在代码执行之前编译 生成中间代码文件  (java)  编译型语言  
+            解释器 运行时执行并及时解释 并立即执行  (js)        解释型语言
+
+          标识(zhi)符 开发人员为变量、属性、函数、参数取的名字
+          标识符不能是关键字和保留字
+          关键字
+            JavaScript本身已经使用的文字
+          保留字
+            预留的关键字
+        </p>
+</body>
+</html>

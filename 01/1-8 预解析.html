@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+
+  </script>
+</head>
+<body>
+  js引擎执行js分为两步: 1预解析 2代码执行
+  预解析: js引擎会把js里面所有的var (变量 函数) 还有function 提升到当前作用域最前面
+    变量预解析(变量提升)
+      把所有的变量声明提升到 当前作用域 最前面 不提升赋值操作
+    函数预解析(函数提升)
+      把所有函数声明提升到 当前作用域 的最前面 不调用函数
+
+  代码执行:  按照书写顺序从上往下执行
+
+  整块预解析操作: 声明 > 函数体 > 赋值 > 调用 > 函数内部的变量提升  
+  
+  技巧 直接从输出(console.log(num))开始往外找 (目标开始,往外一层一层找(往上找) 就近原则)
+
+    1 console.log(num)
+
+    2 console.log(num);   // 错 undefined
+      var num = 10;
+      // 相当于执行以下代码          变量预解析
+      var num;
+      console.log(num);   // num未赋值 所以结果为 undefined
+      num = 10;
+
+    3 利用函数关键字自定义函数    
+      fn();
+      function fn() {
+        console.log(11)
+      }
+      // 相当于执行以下代码     函数预解析
+      function fn() {       // 函数声明
+        console.log(11)
+      }
+      fn();                 // 调用函数
+
+    4 函数表达式  调用函数必须写在函数表达式下面  
+      fn();
+      var fn = function() {     // 错   采取的是表达式赋值的形式      fn 变量名 因为前面有var(声明变量)   
+        console.log(22)
+      }
+      // 相当于以下代码             变量预解析
+      var fn    // 声明变量
+      fn()    // 上面没有这个函数 调用这个函数就会出错
+      fn = function() {      // 函数表达式 
+        console.log(22)
+      }
+
+    demo1 
+      var num = 10;
+      fun();
+      function fun() {
+        console.log(num)
+        var num = 20;
+      }
+        // 相当于执行以下操作
+        var num;      // 提升 声明变量
+        function fun() {      // 提升 声明函数
+          var num;            // 在当前作用域 提升 声明变量
+          console.log(num)
+          num = 20
+        }
+        num = 10;       // 给变量赋值
+        fun();          // 调用函数   必须在声明函数 下面
+        执行思路: 
+          根据作用域链(离目标最近的变量)查找 由上至下开始 第一步提升声明变量和声明函数 var num; 声明函数没有调用先不执行 num=10给num赋值
+          fun()调用函数 回到上面执行声明函数  var num; console.log(num)根据作用域链就近原则 var num;没有赋值 所有结果为 undefined
+    
+    demo2
+      var num = 10;
+      function fn() {
+        console.log(num)
+        var num = 20;
+        console.log(num)
+      }
+      fn();
+        // 相当于执行以下代码
+        var num;    // 声明变量  
+        function fn() {       // 声明函数
+          var num;            // 当前作用域 提升 声明变量
+          console.log(num)    // 根据 作用域链(往上找最靠近目标的变量 就近原则) var num; 所以为undefined 
+          num = 20;
+          console.log(num)    // 20
+        }
+        fn();       // 调用函数
+
+    demo3
+      var a = 18;
+      f1();
+      function f1() {
+        var b = 9;
+        console.log(a);
+        console.log(b);
+        var a = '123';
+      }
+        // 相当于以下代码
+        var a;              // 第一步提升 声明变量和声明函数  提升 声明变量
+        function f1() {     // 提升 声明函数
+          var b;            // 当前作用域  提升 声明函数
+          var a
+          b = 9;
+          console.log(a);   // 执行 根据作用域链(由目标开始 向外查找 就近原则) var a;未赋值 为undefined
+          console.log(b);   
+          a = '123';
+        }
+        a = 18;
+        f1();             // 调用函数
+
+    demo4 经典
+      f1();
+      console.log(a);
+      console.log(b);
+      console.log(c);
+      function f1() {
+        var a = b = c = 9;
+        // 相当于 var a = 9; b = 9; c = 9;      未声明的变量 也是全局变量(不论是在全局、局部作用域)
+        // 集体声明 var a = 9,b = 9, c = 9;     用逗号隔开  
+        console.log(a);
+        console.log(b);
+        console.log(c);
+      }
+        // 相当于以下代码
+        function f1() {       // 提升 声明函数 变量
+          var a;              // 提升 声明变量        var a; 局部变量
+          a = b = c = 9;      // b = 9;c = 9;  没有声明(var)变量 为全局变量
+          console.log(a);
+          console.log(b);
+          console.log(c);
+        }
+        f1();
+        console.log(a);   // a未被声明(is not defined) 所以结果报错
+        console.log(b);   // 9
+        console.log(c);   // 9
+</body>
+</html>

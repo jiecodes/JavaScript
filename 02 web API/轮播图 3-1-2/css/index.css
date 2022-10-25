@@ -1,0 +1,79 @@
+.main {
+  width: 980px;
+  height: 455px;
+  margin-left: 219px;
+  margin-top: 80px;
+  background-color: red;
+}
+/* 轮播图 */
+.focus {
+  position: relative;
+  width: 721px;
+  height: 455px;
+  background-color: purple;
+  /* overflow: hidden; */
+}
+/* 左右箭头 */
+.arrow-left {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+}
+.arrow-right {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+}
+.arrow-left,
+.arrow-right {
+  display: none;
+  width: 24px;
+  height: 40px;
+  background-color: rgba(0,0,0,.3);
+  font-size: 18px;
+  text-align: center;
+  line-height: 40px;
+  color: #fff;
+  border-radius: 20%;
+  z-index: 2;
+}
+/* 小圆点 */
+.circle {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-40%);
+  background-color: rgba(255,255,255,.3);
+  border-radius: 20%;
+}
+.circle li {
+  float: left;
+  margin-left: 10px;
+  width: 10px;
+  height: 10px;
+  border: 2px solid #fff;
+  /* background-color: #fff; */
+  border-radius: 50%;
+  /* 光标 : 指针 */
+  cursor: pointer;
+}
+.current {
+  background-color: #fff;
+}
+.circle li:nth-child(1) {
+  margin-left: 0;
+}
+/* 图片 */
+.focus ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 700%;
+}
+/* 父盒子足够宽 才能用左浮 */
+.focus ul li {
+  float: left;
+}
+

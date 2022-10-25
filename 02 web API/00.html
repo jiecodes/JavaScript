@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  伪数组(可以获取数组长度和索引号 不能使用数组的方法)
+  
+  console.dir()   directory           // 返回的是元素对象 可以查看里面的属性和方法
+
+  鼠标事件
+  <p>
+    onclick               鼠标点击左键触发
+    onmouseover           鼠标经过触发
+    onmouseout            鼠标离开触发
+    onfocus               获得鼠标焦点触发
+    onblur                失去鼠标焦点触发
+    onmousemove           鼠标移动触发
+    onmouseup             鼠标弹起触发
+    onmousedown           鼠标按下触发
+    ondblclick            鼠标双击触发
+  </p>
+  键盘事件
+  <p>
+    onkeyup               某个键盘按键被 松开 触发
+    onkeydown             某个键盘按键被 按下 触发
+    onkeypress            某个键盘按键被按下 时 触发(不识别功能键 ctrl shift 箭头)
+  </p>
+
+  p是块元素
+  i行内标签 倾斜文字 font-style:normal
+
+  btn.onclick = function() { this.style.display = 'none'}         1-2-1 关闭广告
+  this 指向的是事件函数的调用者(btn)    this 谁调用,指向谁
+
+  精灵图一般用的是负坐标 移动的是精灵图(向上 向左移动 都是负值)
+
+  outline:none; 取消input显示边框   outline(外边的线)               1-2-1点击表单
+
+  border-collapse: collapse; 解决塌陷问题 有空隙                    1-2-1 全选按钮
+
+  display:none; 隐藏元素block      隐藏不占位置                     1-2-1 tab栏切换
+
+  元素.value  输入元素的值                                          1-3-1  简单留言板
+
+  href="javascript:;" 或者 javascript:void(0);                     1-3-1  删除简单留言
+
+  border-collapse: collapse;(样式添加) cellspacing='0'(table标签添加) 单元格间距为0     1-3-1 动态生成表格
+  for(var k in obj) k属性名 obj[k]属性值     遍历对象
+
+  absolute 绝对定位不占位置     *{cursor:none}隐藏鼠标               1-4-1 跟随鼠标
+
+  边框阴影    box-shadow: 0 2px 4px  rgba(0, 0, 0, .2);            1-4-1 京东快递单号放大
+
+  ::before伪元素加 content: '';
+  小三角                                                           1-4-1 京东快递单号放大
+  border: 18px solid #000;
+  border-style: solid dashed dashed;
+  border-color: #333  transparent transparent  transparent;
+
+</body>
+</html>

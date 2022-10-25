@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 倒计时 */
+    /* span {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background-color: #333;
+      font-size: 23px;
+      line-height: 40px;
+      text-align: center;
+    } */
+
+
+ 
+  </style>
+</head>
+<body>
+  自动关闭广告     setTimeout(回调函数, 时间) 回调函数(callback)
+  <!-- <script>
+    window.onload = function() {    // 注册窗口事件 自定义script位置 浏览器窗口加载完成触发该事件
+      var img = document.querySelector('img')
+      setTimeout(function() {
+        img.style.display = 'none'
+      }, 5000);
+    }
+  </script>
+  <img src="./image/010.jpg" alt=""> -->
+
+  倒计时  时分秒
+  <!-- <div>
+    <span class="hour">1</span>
+    <span class="minute">2</span> 
+    <span class="second">3</span> 
+  </div>
+  <script>
+    // 1 获取元素
+    var hour = document.querySelector('.hour')
+    var minute = document.querySelector('.minute')
+    var second = document.querySelector('.second')
+    var inputTime = +new Date('2022-05-11 09:12:11')    // 用户返回的总的毫秒数
+    countDown();      // 先调用一次封装好的函数 防止第一次刷新空白
+    // 2 开启定时器
+    setInterval(countDown, 1000);   // 每隔一秒调用一次这个函数 函数每次重新写一次时间 实现了刷新页面
+    // 算出时分秒
+    function countDown() {    // 封装时分秒
+      var nowDate = +new Date();       // 算出当前毫秒数
+      var times = (inputTime - nowDate) / 1000;     // 剩余的总秒数
+      var h = parseInt(times / 60 / 60 % 24)  // parseInt 字符串转换为整数
+      h = h < 10 ? '0' + h : h        // 三目表达式 个位数补零
+      hour.innerHTML = h
+      var m = parseInt(times / 60 % 24)
+      m = m < 10 ? '0' + m : m
+      minute.innerHTML = m
+      var s = parseInt(times % 24)
+      s = s < 10 ? '0' + s : s
+      second.innerHTML = s
+    }
+  </script> -->
+
+  发送验证码 点击禁用按钮disabled=true  button里面的内容通过innerHTML改变   定义一个变量,在定时器里面不断递减
+  <!-- <input type="text"><button>发送</button>
+  <script>
+    var btn = document.querySelector('button')
+    var input = document.querySelector('input')
+    var time = 3;     // 定义剩下的秒速
+    btn.addEventListener('click', function() {
+      if (input.value !== '') {     // 判断表单是否为空 不为空时,执行以下代码
+      btn.disabled = true           // 禁用按钮
+      btn.innerHTML = '剩下'+ 4 + '秒'      //解决延迟1秒
+      var timer = setInterval(function(){
+      if (time == 0) {
+        btn.innerHTML = '发送'
+        btn.disabled = false
+        clearInterval(timer)    // 清除定时器
+        time = 3         // 秒数从3开始
+      } else {
+        btn.innerHTML = '剩下'+ time  + '秒'
+        time--;
+        }
+      },1000)
+    }
+    })
+  </script> -->
+
+  5秒后自动跳转页面   URL
+  <!-- <div></div>
+  <script>
+    var div = document.querySelector('div')
+    var timer = 5;     // 声明变量为5的计时器
+    div.innerHTML = '您将在6s跳转'        // 取消延迟的方式 innerHTML
+    setInterval(function(){
+      if (timer == 0) {
+        location.href = 'http://www.baidu.cn'
+      } else {
+        div.innerHTML = '您将在' + timer + '后跳转页面'
+        timer--;
+      }
+    },1000)
+  </script> -->
+
+  获取URL参数 登录后显示用户名 
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

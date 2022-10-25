@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 引入css公共样式 -->
+  <link rel="stylesheet" href="./css/common.css">
+  <!-- 引入轮播图css样式 -->
+  <link rel="stylesheet" href="./css/index.css">
+  <!-- 引入动画函数  必须写在index.js文件上面 -->
+  <script src="./js/animate.js"></script>
+  <!-- 引入轮播图js文件 -->
+  <script src="./js/index.js"></script>
+
+</head>
+<body>
+  <div class="main">
+    <!-- 轮播图 -->
+    <div class="focus w">
+      <!-- 左侧按钮 -->
+      <a href="javascript:;" class="arrow-left">&lt;</a>
+      <!-- 右侧按钮  3 使用字体图标-->
+      <a href="javascript:;" class="arrow-right">  </a>
+      <!-- 轮播图片 -->
+      <ul>
+        <li>
+          <a href="javascript:;"><img src="./upload/focus.jpg" alt=""></a> 
+        </li>
+        <li>
+          <a href="javascript:;"><img src="./upload/focus1.jpg" alt=""></a> 
+        </li>
+        <li>
+          <a href="javascript:;"><img src="./upload/focus2.jpg" alt=""></a> 
+        </li>
+        <li>
+          <a href="javascript:;"><img src="./upload/focus3.jpg" alt=""></a> 
+        </li>
+      </ul>
+      <!-- 小圆点  -->
+      <ol class="circle">
+        <!-- <li class="current"></li> -->
+      </ol>
+    </div>
+  </div>
+</body>
+</html>

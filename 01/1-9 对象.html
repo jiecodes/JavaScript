@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+        //   function Star(uname, age, sex) {    // 声明构造函数 传入形参
+        //   this.name = uname;
+        //   this.age = age;
+        //   this.sex = sex;
+        //   this.sing = function(sang) {
+        //     console.log(sang)
+        //   }
+        // }
+        // var name1 = new Star('张三',18,'男');  // 调用函数返回的是一个对象 生成实参
+        // console.log(typeof name1)    // name1 数据类型typeof 
+        // console.log(name1.name)
+        // console.log(name1['sex']) 
+        // name1.sing('冰雨1')
+        var obj = {
+      name: '张三',
+      age: 18,
+      sex: '男',
+    }
+    console.log(obj.name)
+    // for in 遍历对象
+    // for (变量 in 对象) {}
+    for (var k in obj) {
+      console.log(k)    // k 是变量   输出得到属性名
+      console.log(obj[k]);
+    }
+  </script>
+</head>
+<body>
+  对象: 是一组无序的相关属性和方法组成的(字符串、数值、函数)万物皆对象,对象是一个具体的事物(代表一个)
+    属性:事物的特征 在对象中用属性表示(常用名词)
+    方法:事物的行为 在对象中用方法表示(常用动词) 
+
+  为什么需要对象: 保存一个值可以用变量 保存多个值(一组数据)可以用数组 保存一个人的完整信息用对象
+
+  创建对象方法(object):
+    1 字面量 创建对象      对象字面量: {}
+      var obj = {}  创建对象方法
+        var obj = {
+          uname = '张三'      // 属性
+          sayHi: function() {   // 方法
+            console.log('hi')
+          }
+        }
+          1 对象里面采取键值对的形式    键 属性名 : 值 属性值(任何类型的值:数字 字符串类型)
+          2 多个属性或方法中间我们用 , 隔开
+          3 方法冒号后面跟的是 匿名函数
+      使用对象
+        调用对象属性  对象名.属性名
+          console.log(obj.uname)  
+                     对象名['属性名']
+          console.log(obj['uname'])
+        调用对象方法  对象名.方法名()
+          boj.sayHi()
+
+    2 new Object 创建对象
+      var obj = new Object();   // 创建一个空的对象
+      obj.uname = '张三风';
+      obj.sayHi = function() {
+        soncole.log('hi')
+      }
+
+    3 构造函数 创建对象   使用构造函数的原因:前面两种创建对象的方式只能创建一个对象
+      构造函数: 把我们对象里面一些相同的属性和方法抽象出来封装到函数里面
+        (我们创建多个对象的时候,里面有很多相同代码会重复使用 因此我们可以利用函数的方式 重复这些不同代码 这个函数称为构造函数)
+        (叫构造函数的原因: 里面封装的不是不同代码 而是对象)
+      
+      声明构造函数
+        function 构造函数名() {
+          this.属性 = 值;
+          this.方法 = function() {}
+        }
+      调用构造函数
+        new 构造函数名();
+
+      demo1 
+        function Star(uname, age, sex) {    // 声明构造函数 传入形参
+          this.name = uname;
+          this.age = age;
+          this.sex = sex;
+          this.sing = function(sang) {    // 传给 方法形参
+            console.log(sang)
+          }
+        }
+        var name1 = new Star('张三',18,'男');  // 调用函数返回的是一个对象 生成实参
+        var name2 = new Star('李四',18,'女');  
+        console.log(typeof name1)             // name1 数据类型typeof  object对象
+        console.log(name1.name)
+        console.log(name1['sex'])
+        name1.sing('冰雨');                   // 方法实参
+          注意: 1 构造函数变量首字母大写
+                2 构造函数不需要return 就可以返回结果 
+                3 调用构造函数必须使用 new
+                4 只要new Star() 调用函数 就创建了一个对象 name1 {}
+                5 属性和方法前面必须添加 this
+      
+    构造函数和对象
+      构造函数 泛指一大类       对象 特指 一个具体的事物
+      我们通过构造函数创建对象的过程 称为对象的实例化
+      构造函数: 如Star() 抽取对象的公共部分 封装到函数里面 泛指一大类(class)
+      创建对象: 如new Star() 特指一个 通过new关键字创建对象的过程 称为对象的实例化
+
+    new 执行过程中做的四件事:
+      1 在内存中创建一个新的空的对象            夫妻生了一个宝宝
+      2 让this指向这个对象                     这个宝宝必须是亲生的
+      3 把属性和方法 添加到这个新对象里面        教宝宝学习知识(属性和方法)
+      4 返回这个新对象                         宝宝回报父母
+
+    变量、属性、函数、方法、区别
+      变量、属性相同点: 都是用来存储数据的
+      变量、属性不同点: 变量:单独声明并赋值,使用时写变量名  属性:在对象里不需要声明,使用时 对象.属性
+      函数、方法相同点: 都是实现某种功能
+      函数、方法不同点: 函数:单独声明,调用函数名()  方法:在对象里面调用,对象.方法()
+
+  遍历对象
+    var obj = {
+      name: '张三',
+      age: 18,
+      sex: '男',
+    }
+    console.log(obj.name)
+    for in 遍历对象
+    for (变量 in 对象) {}
+    for (var k in obj) {
+      console.log(k)    // k 是变量   输出得到属性名
+      console.log(obj[k])   // 属性值
+    }
+
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    li {
+      list-style: none; 
+    }
+  </style>
+</head>
+<body>
+  为啥学节点操作
+  <!-- 1 利用DOM提供的方法获取元素
+  Document.gtElementById();
+  Document.querySelector(); -->
+  2 利用节点层级关系获取元素
+    节点至少拥有三个基本属性  nodeType(节点类型) nodeName(节点名称) nodeValue(节点值)
+      元素节点 nodeType为1(标签)  主要是拿标签
+      属性节点 nodeType为2
+      文本节点 nodeType为3(文本节点包含文字 空格 换行)
+
+  父节点 parentNode  获取子节点 元素.childNodes(获取元素节点 文本节点)  元素.children(获取元素节点)常用
+                元素.firstChild(获取第一个节点)   元素.firstElementchild(获取第一个元素节点)
+  <!-- <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+  </ul>
+  <div class="demo">
+    <div class="box">
+      <span class="son"></span>
+    </div>
+  </div>
+  <script>
+    // 1 父节点 元素.parentNode
+    var son = document.querySelector('.son')
+    console.log(son.parentNode)         // 获取离目标最近的父级节点 找不到父节点 为空
+    // 2 子节点 元素.childNodes(获取元素节点 文本节点)      元素.children(获取元素节点)
+    var ul = document.querySelector('ul')
+    console.log(ul.childNodes)        // 得到所有的节点 多余的5个节点 是换行
+    console.log(ul.children)          // 得到元素节点
+    // 获取第一个子节点和最后一个子节点   元素.firstChild(获取第一个节点)   元素.firstElementchild(获取第一个元素节点)
+    var ul = document.querySelector('ul')
+    console.log(ul.firstChild)        // 获取第一个节点 不管是文本节点还是元素节点    #text表示文本节点 换行
+    console.log(ul.lastChild) 
+    console.log(ul.firstElementChild)   // 获取第一个元素节点
+    console.log(ul.lastElementChild)
+    // 实际开发中 没有兼容性问题
+    console.log(ul.children[0])        // 返回第一个元素节点
+    console.log(ul.children[3])         // 返回最后一个元素节点
+    console.log(ul.children[ul.children.length - 1])    // 返回最后一个元素节点 ul所有的孩子长度-1
+  </script> -->
+
+  兄弟节点 (node.nextSibling)获取下一个兄弟节点       node.previousSibling(获取上一个兄弟节点)
+  <!-- <div>div</div>
+  <span>span</span>
+  <script>
+    var div = document.querySelector('div')
+    // 1 兄弟节点 nextSibling 获取下一个兄弟节点 (包含元素节点 文本节点(空格 换行)) 找不到返回unll
+    console.log(div.nextSibling)
+    console.log(div.previousSibling)    // node.previousSibling(获取上一个兄弟节点)
+    // 兄弟元素节点     node.nextElementSibling(下一个兄弟元素节点)
+    console.log(div.nextElementSibling)       // 下一个兄弟节点
+    console.log(div.previousElementSibling)   // 上一个兄弟节点
+  </script> -->
+
+  页面添加新元素  1 创建元素  2 添加元素
+  创建节点    doucment.createELement('tagName') 动态创建元素节点
+  添加节点(在后面添加 相当于数组push)    node.appendChild(child)  node父级   child子级
+  添加节点(指定位置添加)                node.insertBefore(child, 指定元素)
+  <!-- <ul>
+    <li>1</li>
+  </ul>
+  <script>
+    // 1 创建节点元素     doucment.createELement('tagName')
+    var li = document.createElement('li')
+    // 2 添加节点元素       node.appendChild(child)
+    var ul = document.querySelector('ul')     // 获取元素
+    ul.appendChild(li);
+    // 3 添加指定位置节点元素 node.insertBefore(child, 指定元素)
+    var li2 = document.createElement('li')      // 创建子节点元素
+    ul.insertBefore(li2, ul.children[0])      // ul.children[0] 表示ul里面第一个子元素
+  </script> -->
+
+  删除节点    node.removeChild(child)   node 父节点
+  <!-- <button>删除</button>
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+  </ul>
+  <script>
+    // 1 获取父节点元素
+    var ul = document.querySelector('ul')
+    var btn = document.querySelector('button')
+    // 2 注册事件 
+    btn.onclick = function() {
+      if (ul.children.length == 0) {
+        this.disabled = true;
+      } else {
+        // 3 程序实现方式
+        ul.removeChild(ul.children[0])    // ul.children[0] 父节点第一个子元素
+      }
+    }
+  </script> -->
+
+  复制节点    node.cloneNode()      如果()里面为空或者为false 是浅拷贝 只拷贝标签不拷贝内容
+             node.cloneNode(true)  如果()里面为true 是深拷贝 拷贝标签和内容
+  <!-- <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+  </ul>
+  <script>
+    var ul = document.querySelector('ul')
+    var li = ul.children[0].cloneNode(true)     // 创建节点   父节点.里面的第几个子元素.复制
+    // ul.appendChild(li)                 // 在子元素最后添加
+    ul.insertBefore(li,ul.children[0])    // 在子元素指定位置添加
+  </script> -->
+
+
+  三种创建元素区别
+  1 innerHTML   创建多个元素效率更高(不是拼接字符串(100个数据用2000ms), 采取的是数组形式的拼接push(100个数据用5ms))
+  2 document.createElement()  创建多个元素效率低些,但结构清晰(100个数据用20ms)       B站视频 p245
+  3 document.write()  创建元素 如果页面文档加载完毕,调用这句话导致页面重绘 (了解)
+    <!-- demo <button>按钮</button>
+    <span>333</span>
+    <script>
+      var btn = document.querySelector('button')
+      btn.onclick = function() {
+        document.write('<div>111</div>')
+      }
+    </script> -->
+
+
+</body>
+</html>

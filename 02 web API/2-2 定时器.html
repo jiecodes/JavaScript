@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  定时器:window对象提供俩种方式 setTimeout()只能调用一次回调函数,就结束定时器   setInterval()
+    语法规范: window.setTimeout(调用函数,[延迟的毫秒数ms])    window在调用时可以省略
+    调用函数: 可直接写函数、函数名、函数名()      调用函数(可以是回调函数 callback)
+    有多个定时器,给定时器加标识符(名字)  var timer1 = setTimeout(callback, 2000)
+  <!-- <script>
+    // 直接写函数
+    window.setTimeout(function() {
+      console.log('2000毫秒')
+    },2000)
+    // 调用函数: 函数名  函数名()
+    function callback() {
+      console.log('爆炸了')
+    }
+    // 有多个定时器,给定时器加标识符(名字) 
+    var timer1 = setTimeout(callback, 2000)
+    var timer2 = setTimeout(callback, 3000)
+    setTimeout('callback()',3000)     // 函数名() 不推荐
+  </script> -->
+
+  定时器第二种方式 window.setInterval(调用函数,[延迟的毫秒数ms])     interval 时间间隔
+      区别第一种方式:重复调用一个函数,每隔一段时间,就去调用一次回调函数
+  <!-- <script>
+    setInterval(function() {
+      console.log('输出n次')
+    }, 1000)
+  </script> -->
+
+  
+  回调函数 callback    上一件事干完,再回头调用这个函数
+    setTimeout(回调函数, 时间)
+    element.onclick = function(){}      注册事件         里面的函数也是回调函数
+    element.addEventListener('click', function() {})    里面的函数也是回调函数
+
+  清除(setTimeout)定时器  window.clearTimeout(timeoutID)   timeoutID定时器的名字(标识符)
+  <!-- <script>
+    window.onload = function() {      // 浏览器窗口加载完毕,加载该事件 注册窗口事件 自定义位置 
+      var btn = document.querySelector('button')
+      var timer = window.setTimeout(function() {    // 给定时器加名字 (标识符)
+        console.log('2秒')
+      },2000)
+      btn.onclick = function() {
+        // 清除定时器
+        clearTimeout(timer)
+      }
+    }
+  </script>
+  <button>暂停</button> -->
+
+  清除(set Interval)定时器 window.clearInterval(intervalID)
+  <!-- <button class="begin">开始</button>
+  <button class="stop">暂停</button>
+  <script>
+    var begin = document.querySelector('.begin')
+    var stop = document.querySelector('.stop')
+    var timer = null;    // 声明一个为空的变量 给null  如果不给的话,返回的是undefined,会出毛病
+    begin.addEventListener('click', function() {
+      timer = setInterval(function() {      // 给定时器加标识符
+        console.log('你好')
+      }, 1000);
+    })
+    stop.addEventListener('click', function() {
+      clearInterval(timer)
+    })
+  </script> -->
+
+
+  this指向    一般情况下this指向调用它的函数
+  <!-- 1 在全局作用域或者函数中this指向全局对象 window(计时器里面this指向的是window)
+    console.log(this)
+    function fn() {    // 声明函数
+      console.log(this)
+    }
+    fn();       // 调用函数       window.fn() 省略了window.
+    window.setTimeout(function() {
+      console.log(this)
+    },1000)
+  2 方法调用  谁调用指向谁
+  <button>按钮</button>
+    var obj = {
+      demo: function() {
+        console.log(this)   // 指向obj
+      }
+    }
+    obj.demo();   // 调用对象里面的属性
+    var btn = document.querySelector('button')
+    btn.onclick = function() {
+      console.log(this)
+    }
+    btn.addEventListener('click', function() {
+      console.log(this)
+    })
+  3 构造函数 this指向构造函数实例     
+    function Fun() {
+      console.log(this)   // 指向fun 实例对象 
+    }
+    var fun = new Fun()   // new表示构造函数   -->
+ 
+
+
+  JS执行队列  分为同步任务、异步任务(回调函数:定时器、function)
+    js执行机制 先执行栈中的同步任务,异步任务(回调函数)放到任务队列中,执行栈中的所有同步任务执行完毕后,依次读取任务队列中的异步任务
+      事件循环(event loop):由于主线程不断重复获得任务、执行任务、再获取任务、再执行,这种机制称为事件循环
+    js执行机制 js最大的特点是 单线程 (同一时间只能做一件事)  
+    单线程导致问题:按照页面代码执行顺序依次执行,js执行时间过长,造成页面渲染不连贯,导致页面加载阻塞的感觉
+
+  异步:(同一时间做多件事情)
+  现在js采取异步的方式处理代码 1 2 3
+  <!-- console.log(1)            
+  setTimeout(function(){    // 这个用的时间长 先执行下一个
+    console.log(3)
+  },1000)
+  console.log(2) -->
+
+
+  location 对象: window对象为我们提供了一个location属性用于获取或设置窗体的URL.返回的是对象,所以叫location对象
+  URL(Uniform Resource Locator)统一资源定位符
+    <!-- URL语法:  protocol://host[:port]/path/[?query]#fragment
+              http://www.baidu.cn/index.html?name=andy&age=19#link
+                protocol 通信协议,常用http,ftp,maito
+                host     主机(域名) www.baidu.com
+                port     端口号(可选)   http端口号为80
+                path     用0或'/'分隔  表示主机目录或文件地址
+                query    参数 键值对的形式展示 通过&分隔
+                fragment 片段 #后面内容 用于链接、锚点
+      location.search 返回参数
+      location.href 返回URL地址 -->
+  点击跳转到指定页面    location.href = 'www.baidu.cn'
+  <!-- <button>点击</button>
+  <script>
+    var btn = document.querySelector('button')
+    btn.addEventListener('click', function() {
+      console.log(location.href)          // 打印当前页面URL地址
+      location.href = 'http://www.baidu.com'      // 跳转到指定位置
+    })
+  </script> -->
+
+  location对象 常见方法   跳转页面 assign
+  <!-- <script>
+    document.addEventListener('DOMContentLoaded', function() {    // 窗口加载事件 最后执行官
+      var btn = document.querySelector('button')
+      btn.addEventListener('click', function() {
+        // window.location.assign('http://www.baidu.com')    // 跟href一样 可以后退页面
+        // window.location.replace('http://www.baidu.com')    // 不可以后退页面
+        window.location.reload(true)    // 刷新页面 相当于f5 如果参数为true强制刷新ctrl+f5
+      })
+    })
+  </script>
+  <button>按钮</button> -->
+
+  navigator 对象
+    判断如果是pc端就是pc端页面,如果是手机端就切换手机页面
+
+  history 对象方法
+    back()      后退    <-
+    forward()   前进
+    go(参数)     前进后退功能 参数如果是1前进1个页面 如果是-1后退1个页面
+
+
+
+
+
+
+
+</body>
+</html>

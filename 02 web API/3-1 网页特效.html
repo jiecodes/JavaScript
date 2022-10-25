@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 动画函数的使用 京东侧边栏  slider 滑动条(侧边栏)*/
+    .slider {
+      position: fixed;
+      right: 500px;
+      bottom: 100px;
+      width: 40px;
+      height: 40px;
+      text-align: center;
+      line-height: 40px;
+      cursor: pointer;
+      color: #fff;
+    }
+    .con {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 200px;
+      height: 40px;
+      background-color: purple;
+      z-index: -1;
+    }
+  </style>
+  <!-- 引入animate 动画js文件 -->
+  <script src="./js/animate 3-1.js"></script>
+</head>
+<body>
+  元素偏移量 offset(偏移) 系列   (动态获取盒子大小)
+    获取元素距离带有定位父元素的位置  获取元素自身大小(宽和高)  注意返回数字不带单位
+    element.offsetParent      返回该元素带有定位的父级元素 如果父级没有定位 返回body
+    element.offsetTop         返回元素相对带有定位父元素上方的偏移
+    element.offsetLeft        返回元素相对带有定位父元素左方的偏移
+    element.offsetWidth       返回自身(包括padding、边框、内容区的宽度) 返回值不带单位
+    element.offsetHeight      返回自身(包括padding、边框、内容区的高度) 返回值不带单位
+    <!-- <script>
+      window.onload = function() {          // 窗口加载事件 最后执行
+        var div = document.querySelector('div') 
+        div.onclick = function() {
+          console.log(div.offsetLeft)   // 获取元素相对父元素左方的偏移
+          console.log(div.offsetWidth)  // 返回自身宽度(padding 边框 内容区)
+          console.log(div.offsetHeight) // 返回自身高度(padding 边框 内容区)
+          console.log(div.offsetParent) // 返回带定位的父元素 否则返回body
+          console.log(div.parentNode)   // 返回最近的父元素 不管有没有定位 (扩展)
+        }
+      }
+    </script>
+    <div style="height: 100px;background-color: #885d5d;"></div> -->
+
+  offset style区别
+    <!-- offset 想要获取元素大小位置 用offset        style  想要给元素更改值 用style
+      得到任意样式表(行内式 内嵌式 外联式)中的样式值      得到任意行内样式表中的样式值
+      获取数值没有单位                                  获取数值带有单位的 字符串
+      包含padding+border+width(内容区)                 包含padding+border+width(内容区) 
+      offsetWidth 是只读属性 只能获取不能赋值            style.width 是可读写属性 可以获取也可以赋值      -->
+    
+
+  元素可视区 client(客户端)   动态得到该元素的边框大小、元素大小等
+    element.clientTop       返回元素上边框大小
+    element.clientLeft      返回元素下边框大小
+    element.clientWidth     返回自身包含padding、内容区宽度,不含边框 返回值不带单位
+    element.clientHeight    返回自身包含padding、内容区高度,不含边框 返回值不带单位
+
+  flexible.js 淘宝源码分析
+  立即执行函数: 不需要调用,立马能够自己执行的函数       可以传递参数
+  写法: (function() {})()   或者    (function(){}());
+  立即执行函数最大作用: 独立创建一个作用域,里面所有的变量都是局部变量,不会有命名冲突的情况
+    <!-- <script>
+      (function(a, b) {     // 形参
+        console.log(a + b)
+      })(1, 2);        // 实参  第二个小括号可以看做调用函数      ; 用分号隔开
+      (function(){
+        console.log(4)
+      }())
+    </script> -->
+    普通写法: function fn(a, b){    // 形参
+      console.log(a + b)
+    } 
+    fn(1, 2)      // 实参 调用函数  
+
+  重新加载页面 pageshow 事件    不管你点击了页面加载、前进、链接 都会刷新页面
+    <!-- <script>
+      window.addEventListener('pageshow', function() {
+        alert(1)
+      })
+    </script>  
+    <a href="http://www.baidu.com">lianjie</a> -->
+
+
+  元素滚动 scroll 系列
+    element.scrollTop       返回被卷去的上侧距离 返回值不带单位
+    element.scrollLeft      返回被卷去的上侧距离 返回值不带单位
+    element.scrollWidth     返回自身宽度,不含边框 返回值不带单位
+    element.scrollHeight    返回自身宽度,不含边框 返回值不带单位
+  
+    
+    scrollHeight 和 clientHeight 区别
+    <!-- <div style="width: 100px; height: 100px; background-color: hotpink; overflow: auto;">
+      欲将沉醉换悲凉，清歌莫断肠。这混乱的尘世，究竟充斥了多少绝望和悲伤。你想去做一个勇敢的男子，为爱，为信仰，轰轰烈烈的奋斗一场。你周身充斥着无人可比的灵气和光芒。你有着与伟人比肩的才气和名声，你是那样高傲孤洁的男子。你的一寸狂心未说，已经几度黄昏雨。
+
+　　曾经以为，相爱的人一定要相守，只有相守，情感才能长久。可是，此岸和彼岸只不过是空间的差距，却无法拉长心灵的距离。
+
+　　时光荏苒，岁月无声。日子不紧不慢的如涓涓溪水静静的流去，而从身边流去的只有时光，沉淀下来的是与你一路相伴的幸福和快乐，温馨和安暖。于我，在这个凋零都感受到诗意横溢的秋，只想做一件事，拈一片绯红的枫叶，轻轻地刻上我的心语。对信仰，是我今生永不改变的主题！而后，幸福的寄往有你的那个城市。从此，在我心里，于我的生命里，轻握你许的安暖，静静地在岁月的彼岸，为你守候一世永恒！
+  </div>
+  <script>
+    var div = document.querySelector('div')
+    console.log(div.scrollHeight)       // 返回自身高度
+    console.log(div.clientHeight)       // 返回盒子高度
+    // scroll滚动事件 当滚动条发生变化时,触发事件
+    div.addEventListener('scroll', function() {
+      console.log(div.scrollTop)       // 显示被卷去上面的距离
+    })
+  </script> -->
+
+  主要区别
+  offsetHeight(偏移高度)    返回自身padding 内容区 返回值不带单位 边框       
+  clientHeight(客户端高度)  返回自身padding 内容区 返回值不带单位 没有边框  返回自身盒子高度(不包含内容高度)
+  scrollHeight(滚动高度)    返回自身padding 内容区 返回值不带单位 没有边框  返回自身包含内容实际高度
+
+  主要用法
+  获取元素位置 offset(偏移量) offsetLeft offsetTop
+  获取元素大小 client(客户端) clientHeight clientWidth
+  获取滚动距离 scroll scrollTop scrollLeft
+  页面滚动距离 window.pageYOffset
+
+  mouseover(鼠标经过自身盒子会触发,经过子盒子也会触发,类似冒泡) mouseenter(经过自身盒子会触发) 区别
+
+
+  动画原理 核心原理:通过定时器(setInterval())不断移动盒子位置      div.style.top设置top值要加 定位
+  offsetLeft获取当前位置    div.offsetLeft+1 不能动的原因:offset只能获取不能赋值  给盒子赋值通过:style
+  <!-- <script>
+    window.addEventListener('load', function() {    // 窗口加载事件 最后执行
+      var div = document.querySelector('div')
+      // 添加定时器(setInterval())
+      var timer = setInterval(function() {
+        // div.offsetLeft+1 不能动的原因:offset只能获取不能赋值,获取到的值没有单位  给盒子赋值通过:style 加定位才有效果 
+        div.style.left = div.offsetLeft + 2 + 'px'
+        // 暂停定时器
+        if (div.offsetLeft >= 400) {
+          clearInterval(timer)
+        }
+      }, 200);
+    })
+  </script>
+  <div style="position: absolute; top: 0; left: 0; width: 150px; height: 150px; background-color: red;"></div> -->
+
+  封装简单动画函数
+  <!-- <script>
+    // 简单动画函数封装 obj目标对象 target目标位置
+    window.addEventListener('load', function() {
+    function animate(obj, target) {
+        // 封装定时器
+        var timer = setInterval(function() {
+          // div.offsetLeft div的位置
+          obj.style.left = obj.offsetLeft + 1 + 'px'
+          if (obj.offsetLeft >= target) {
+            // 暂停定时器
+            clearInterval(timer)
+          } 
+        }, 300)
+      }
+      var div = document.querySelector('div')
+      var span = document.querySelector('span')
+      // 调用函数
+      animate(div, 100)
+      animate(span, 200)
+    })
+  </script>
+  <span style="display:block;position: absolute; width: 150px;height: 150px;background-color: blue;"></span>
+  <div style="position: absolute; width: 100px;height: 100px;background-color: green;"></div> -->
+
+  给不同对象添加不同定时器   添加原因:1 每次用 var声明 都会开辟一个新空间,浪费内存  2 变量名字一样,会有影响
+  <!-- <script>
+    // 简单动画函数封装 obj目标对象 target目标位置
+    window.addEventListener('load', function() {
+    function animate(obj, target) {
+        // 封装定时器   var一下就会开辟一个空间 多次调用就会浪费内存
+        // obj.timer 给不同元素添加不同定时器 
+        // 例如：var obj = {};
+        //      obj.name = 'andy';
+
+        // 给不同元素添加不同定时器会出现 点击按钮速度会不断加快的bug 会开启太多定时器
+        // 解决方案: 让元素只有一个定时器执行       先清除以前的定时器,只保留当前定时器
+        clearInterval(obj.timer)
+        obj.timer = setInterval(function() {
+          // div.offsetLeft div的位置
+          obj.style.left = obj.offsetLeft + 1 + 'px'
+          if (obj.offsetLeft >= target) {
+            // 暂停定时器
+            clearInterval(obj.timer)
+          } 
+        }, 30)
+      }
+      var div = document.querySelector('div')
+      var span = document.querySelector('span')
+      var button = document.querySelector('button')
+      // 调用函数
+      animate(div, 100)
+      button.onclick = function() {
+        animate(span, 200)
+      }
+    })
+  </script>
+  <span style="display:block;position: absolute; width: 150px;height: 150px;background-color: blue;"></span>
+  <div style="position: absolute; width: 100px;height: 100px;background-color: green;"></div>
+  <button>点击span</button> -->
+
+  缓动动画                                   Math.ceil 往大取整   
+    1 让盒子每次移动距离慢慢变小,速度慢下来
+    2 核心算法:(目标值 - 现在位置) / 10 = 每次移动的距离
+    3 停止定时器条件: 当前盒子位置等于目标位置
+  <!-- <script>
+    window.addEventListener('load', function() {    // 窗口加载事件 最后执行
+      function animate(obj, target) {   // 封装动画函数 obj目标对象 target目标位置
+        clearInterval(obj.timer)
+        obj.timer = setInterval(function() {      // 添加定时器
+          var step = Math.ceil((target - div.offsetLeft) / 10 )    // 每次移动的距离 缓动动画  Math.ceil往大取整
+          console.log(obj.offsetLeft + step )
+          if (obj.offsetLeft >= target) {
+            clearInterval(obj.timer)                // 清除定时器
+          }
+          obj.style.left = obj.offsetLeft + step  + 'px'   // step + 1 解决一直跑的问题
+        },15)
+      }
+      var div = document.querySelector('div')
+      var button = document.querySelector('button')
+      button.addEventListener('click', function() {
+        animate(div, 500)
+      })
+    })
+  </script>
+  <div style="position:absolute;width:150px;height: 150px;background-color: red;"></div>
+  <button>按钮</button> -->
+
+  缓动动画多个目标值移动
+  <!-- <script>
+    window.addEventListener('load', function() {    // 窗口加载事件 最后执行
+      function animate(obj, target) {   // 封装动画函数 obj目标对象 target目标位置
+        clearInterval(obj.timer)
+        obj.timer = setInterval(function() {      // 添加定时器
+          var step = (target - div.offsetLeft) / 10     // 每次移动的距离 缓动动画  Math.ceil往大取整,解决不能准确到目标位置
+          console.log(obj.offsetLeft + step )
+          // 解决不能准确到目标位置
+          step = step > 0 ? Math.ceil(step) : Math.floor(step)   // step>0 往大取整  step<0 往小取整
+          if (obj.offsetLeft == target) {
+            clearInterval(obj.timer)                // 清除定时器
+          }
+          obj.style.left = obj.offsetLeft + step  + 'px'   // step + 1 解决一直跑的问题
+        },15)
+      }
+      var div = document.querySelector('div')
+      var button5 = document.querySelector('.btn500')
+      var button8 = document.querySelector('.btn800')
+      button5.addEventListener('click', function() {
+        animate(div, 500)
+      })
+      button8.addEventListener('click', function() {
+        animate(div, 800)
+      })
+    })
+  </script>
+  <div style="position:absolute;width:150px;height: 150px;background-color: red;"></div>
+  <button class="btn500">按钮5</button>
+  <button class="btn800">按钮8</button> -->
+  
+  缓动动画添加回调函数(callback)  调用函数里面是实参
+  回调函数原理:函数可以作为一个参数.将这个函数作为参数传到另一个函数里面,当那个函数执行完后,再执行传进去的函数,这个过程叫回调
+  <!-- <script>
+    window.addEventListener('load', function() {    // 窗口加载事件 最后执行
+      // callback接收回调函数   相当于执行 callback=function(){}
+      function animate(obj, target, callback) {   // 形参 封装动画函数 obj目标对象 target目标位置 
+        clearInterval(obj.timer)
+        obj.timer = setInterval(function() {      // 添加定时器
+          var step = (target - div.offsetLeft) / 10     // 每次移动的距离 缓动动画  Math.ceil往大取整,解决不能准确到目标位置
+          console.log(obj.offsetLeft + step )
+          // 解决不能准确到目标位置
+          step = step > 0 ? Math.ceil(step) : Math.floor(step)   // step>0 往大取整  step<0 往小取整
+          if (obj.offsetLeft == target) {
+            clearInterval(obj.timer)                // 清除定时器
+            // 回调函数写在定时器结束里面
+            if (callback) { // 如果有callback这个函数 
+              callback(); // 调用函数
+            }
+          }
+          obj.style.left = obj.offsetLeft + step  + 'px'   // step + 1 解决一直跑的问题
+        }, 15)
+      }
+      var div = document.querySelector('div')
+      var button5 = document.querySelector('.btn500')
+      var button8 = document.querySelector('.btn800')
+      button5.addEventListener('click', function() {
+        // 调用函数 里面是实参 可以是数值 函数
+        animate(div, 500, function() {   
+          // alert('ni')
+          div.style.backgroundColor = 'green'   // 回调函数 等着前面的所有的执行完毕才会执行
+        })
+      })
+      button8.addEventListener('click', function() {
+        animate(div, 800)
+      })
+    })
+  </script>
+  <div style="position:absolute;width:150px;height: 150px;background-color: red;"></div>
+  <button class="btn500">按钮5</button>
+  <button class="btn800">按钮8</button> -->
+  
+  动画函数的使用 京东侧边栏    1 先把函数封装到js文件中 
+  <!-- <script>
+    window.addEventListener('load', function() {
+      var slider = document.querySelector('.slider')
+      var con = document.querySelector('.con')
+      // 鼠标移入 mouseenter没有冒泡
+      slider.addEventListener('mouseenter', function() {
+        // 添加动画
+        // animate(obj, target, callback)
+        animate(con, -160, function() {
+          slider.children[0].innerHTML = '→'
+        }) // 实参
+      })
+      // 鼠标离开
+      slider.addEventListener('mouseleave', function() {
+        animate(con, 0, function() {
+          slider.children[0].innerHTML = '←'
+        })
+      })
+    })
+  </script>
+  <div class="slider">
+    <span>←</span>
+    <div class="con"></div>
+  </div> -->
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

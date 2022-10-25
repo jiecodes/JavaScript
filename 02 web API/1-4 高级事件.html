@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  添加 注册事件(绑定事件) 给元素添加事件
+  注册事件俩种方法: 传统方式和方法监听事件
+  传统方式: 特点:事件的唯一性 同一元素同一事件只能设置一个处理函数
+  <!-- <button>传统方式</button>
+  <script>
+    var btn = document.querySelector('button')
+    btn.onclick = function() {
+      alert('一')
+    }
+    btn.onclick = function() {
+      alert('二')
+    }
+  </script> -->
+  方法监听注册事件(addEventListener()): 特点:同一个元素同一个事件可以注册多个监听器(事件处理函数) add(添加) Event(事件)
+  语法:eventTarget.addEventListener('type', listener[,useCapture])
+      eventTarget: 监听对象 给谁添加的事件
+      type: 事件类型字符串 比如:click mouseover, 注意这里不带on
+      listener: 事件处理函数 function
+      useCapture: 可选参数 默认值false
+  <!-- <button>方法监听注册事件</button>
+  <button></button>
+  <script>
+    var btn = document.querySelectorAll('button')
+    btn[0].addEventListener('click', function() {
+      alert('方法监听事件 add Event Listener')
+    })
+    btn[0].addEventListener('click', function() {
+      alert('1')
+    })
+  </script> -->
+
+  删除事件 
+   传统方式的解绑事件   eventTarget.onclick = null;   eventTarget监听事件
+   方法监听注册事件解绑事件  eventTarget.removeEventListener(type, listener[useCapture])
+  <!-- <div>1111</div>
+  <div>2222</div>
+  <script>
+    var div = document.querySelectorAll('div')
+    div[0].onclick = function() {
+      alert(1)
+      // 传统方式删除事件(解绑事件)
+      div[0].onclick = null;      
+    }
+    // 方法监听注册事件 解绑事件 remove Event Listener      Event事件
+    div[1].addEventListener('click', fn)    // 添加监听事件 这里的fn不需要()
+    function fn() {
+      alert('22')
+      div[1].removeEventListener('click', fn)   // 解绑事件
+    }
+  </script> -->
+
+  DOM事件流(事件的传播过程)    分为:事件捕获阶段(只能得到捕获阶段 onblur onfocus) 目标阶段 事件冒泡阶段(只能得到冒泡阶段onclick)
+    document    从上往下为事件捕获阶段    
+    html        从下往上为事件冒泡阶段
+    body
+    div(处于目标阶段)
+  捕获阶段  冒泡阶段
+  <!-- <div class="father">
+    <div class="son">son</div>
+  </div>
+  <script>
+    // 当使用方法监听事件 第三个参数为true时 执行的是捕获事件 执行顺序document->html->body->.father->.son
+    var son = document.querySelector('.son')
+    var father = document.querySelector('.father')
+    // son.addEventListener('click', function() {
+    //   alert('son')
+    // },true)
+    // father.addEventListener('click', function() {
+    //   alert('father')
+    // },true)
+    // },true)
+    // 当使用方法监听事件 第三个参数为false或省略 执行的是冒泡事件 执行顺序.son->.father->html->body->document
+    son.addEventListener('click', function() {
+      alert('son')
+    }, false)
+    father.addEventListener('click', function() {
+      alert('father')
+    }, false)
+    document.addEventListener('click', function() {
+      alert('document')
+    })
+  </script> -->
+
+  事件对象  function(event或者e) event或者e 事件对象(形参)
+            事件对象有了事件才会存在 他是系统给我们自动创建的 不需要我们传递参数
+  <!-- <div>event</div>
+  <script>
+    var div = document.querySelector('div')
+    // 传统的写法
+    div.onclick = function(event) {
+      console.log(event)
+    }
+    // 添加事件监听方法
+    div.addEventListener('click', function(event) {
+      console.log(event)
+    })
+  </script> -->
+
+
+  事件对象常见属性和方法:
+  返回触发事件对象    e.target 点击哪个元素 就返回哪个元素    target(目标)
+                    this 谁调用 返回谁
+  <!-- <ul>
+    <li>12</li>
+    <li>12</li>
+    <li>12</li>
+  </ul> 
+  <script>
+    var ul = document.querySelector('ul')
+    ul.onclick = function(e) {
+      console.log(this)
+      console.log(e.target)
+    }
+    ul.addEventListener('click', function(e) {
+      console.log(this)
+      console.log(e.target)
+    })
+  </script> -->
+
+  返回事件类型 e.type   比如:click mouseover
+  <!-- <div>12</div>
+  <script>
+    var div = document.querySelector('div')
+    div.addEventListener('click', fn)
+    // 把函数写在外面
+    function fn(e) {      
+      console.log(e.type)
+    }
+  </script> -->
+
+  阻止默认行为(事件) e.preventDefault() 这是一个方法  让链接不跳转 或者让按钮不提交     
+  <!-- <a href="http://www.baidu.com">a</a>
+  <form action="http://www.baidu.com" class="" report-submit="false" bindsubmit="" bindreset="">
+    <input type="text">
+    <input type="submit" value="提交">
+  </form>
+  <script>
+    var a = document.querySelector('a')
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+    })
+  </script> -->
+    
+  阻止事件冒泡                                          重点
+    e.stopPropagation()  propagation 传播(坡坡给神)
+  <!-- <div class="father"><div class="son">son</div></div>
+  <script>
+    var son = document.querySelector('.son')
+    var father = document.querySelector('.father')
+    // 当使用方法监听事件 第三个参数为false或省略 执行的是冒泡事件 执行顺序.son->.father->html->body->document
+    son.addEventListener('click', function(e) {
+      alert('son')
+      e.stopPropagation();                // 阻止冒泡
+    }, false)
+    father.addEventListener('click', function() {
+      alert('father')
+    }, false)
+    document.addEventListener('click', function() {
+      alert('document')
+    })
+  </script> -->
+
+  事件委托(事件代理)     核心原理:不是每个子节点都设置事件监听器,而是给父节点设置事件监听器,利用冒泡原理设置每个子节点上
+  事件委托核心原理:给父节点添加事件监听器,利用冒泡设置每一个子节点
+  <!-- <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+  </ul>
+  <script>
+    var ul = document.querySelector('ul')
+    ul.addEventListener('click', function(e) {
+      // alert('234')
+      // e.target 这个可以得到点击的对象
+      for (var i = 0; i < this.children.length;i++) {
+        ul.children[i].style.backgroundColor = ''
+      }
+      e.target.style.backgroundColor = 'red'    // 背景设置成红色
+    })
+  </script> -->
+
+  文字不能复制    禁用右键 contextmenu          禁止选中文字 selectstart
+  <!-- <script>
+    // 禁用右键 contextmenu 
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault()
+    })
+    // 禁止选中文字 selectstart
+    // document.addEventListener('selectstart', function(e) {
+    //   e.preventDefault()
+    // })
+  </script> -->
+
+  鼠标事件对象  MouseEvent
+  <!-- e.clientX           返回鼠标相当于 浏览器窗口 可视区的X坐标   client(克莱恩特)客户端
+  e.clientY           返回鼠标相当于 浏览器窗口 可视区的Y坐标
+  e.pageX             返回鼠标相当于 文档页面 X坐标
+  e.pageY             返回鼠标相当于 文档页面 Y坐标
+  e.screenX           返回鼠标相当于 电脑屏幕 的X坐标
+  e.screenY           返回鼠标相当于 电脑屏幕 的Y坐标
+  <script>
+    document.addEventListener('click', function(e) {
+      console.log(e)
+      console.log(e.clientX)
+      console.log(e.clientY)
+    })
+  </script> -->
+
+  常用键盘对象    document.keyup 弹起    keydown 按下     keypress 按下    down向下  对象是文档
+  <!-- <script>
+    // 键盘弹起触发 keyup
+    document.onkeyup = function() {
+      console.log('弹起')
+    }
+    // 键盘按下触发 keydown
+    document.addEventListener('keydown', function() {
+      console.log('按下 keydown')
+    })
+    // 键盘按下触发 keypress  不识别功能键 shift ctrl
+    document.addEventListener('keypress', function() {
+      console.log('按下 keypress')
+    })
+  </script> -->
+
+  键盘事件对象 keyCode key属性      keyup、keydown字母返回的ASCII码值不分大小写   keypress字母区分大小写
+  <script>
+    document.addEventListener('keydown', function(e) {
+      // console.log(e)
+      console.log('down' + e.keyCode)       // 返回ascii码
+      // console.log(e.key)                 // 返回字符
+    })
+    document.addEventListener('keypress', function(e) {
+      console.log('press' + e.keyCode)      // 返回ascii码
+      // console.log(e.key)
+    })
+  </script>
+
+
+
+</body>
+</html>

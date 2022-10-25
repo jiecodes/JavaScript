@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    var iname = 'san';
+    console.log(iname)
+    var myname = prompt('输入名字');   //用户输入姓名 存储在一个myname的变量里面
+        alert(myname);   
+  </script>
+</head>
+<body>
+  变量 是程序在内存中申请一块用于存储数据的空间
+<p>
+  变量使用 
+  1 声明变量  var age; //声明一个名称为age的变量 var(variable 变量)    let age;
+  2 赋值      age = 18; //把值存入变量中   
+  初始化      var age = 18;   //声明一个变量并赋值 称为变量的初始化
+
+    控制台打印
+      var iname = 'san';
+      console.log(iname)
+    弹出用户名  
+      var myname = prompt('输入名字');   //用户输入姓名 存储在一个myname的变量里面
+      alert(myname);    // 输出用户名
+
+  更新变量  变量重新赋值后 之前的变量会覆盖前面的变量赋的值
+  同时声明多个变量
+    var age = 18;
+    var address = '新';
+
+    var age = 18,
+        address = '新';
+
+  声明变量的特殊情况
+    只声明不赋值
+      var sex;
+      console.log(sex);   // undefined 未定义的
+    不声明 不赋值
+      console.log(tel);   // 报错
+    不声明 直接使用
+      qq = 110;
+      console.log(qq)     // 可以使用 
+  
+  命名规范
+    驼峰命名法    首字母小写 后面首字母大写 myFirstName
+    不能以数字开头    18age 错误
+    名字之间不能有空格
+    由字母(A-Za-z)、数字、下划线、美元符号 组成
+    区分大小写
+    不能用关键字 name
+
+  交换俩个变量的值  需要一个临时变量temp帮助
+    var temp;   // 声明一个临时变量为空
+    var apple1 = '1';
+    var apple2 = '2';
+    temp = apple1;  // 把右边给左边
+    apple1 = apple2;
+    apple2 = temp;
+    console.log(apple2);
+
+</p>
+
+
+</body>
+</html>

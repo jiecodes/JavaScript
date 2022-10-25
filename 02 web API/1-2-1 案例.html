@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 登录显示和隐藏密码    表单属性设置 input */
+    /* .box {
+      position: relative;
+      width: 400px;
+      height: 30px;
+      border-bottom: 1px solid #666;
+      margin: 40px auto;
+      background-color: red;
+    }
+    .box img {
+      position: absolute;
+      top: 2px;
+      right: 5px;
+      width: 24px;
+    }
+    .box input {
+      width: 100%;
+      height: 28px;
+      border: 0;
+      去掉边框 
+      outline: none;    
+    } */
+
+
+    /* 关闭广告 */
+    /* .box {
+      position: relative;
+    }
+    .box img {
+      width: 100px;
+      height: 100px;
+    }
+    .box i {
+      position: absolute;
+      top: 0;
+      left: 15px;
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 1px solid #eee;
+      text-align: center;
+      line-height: 18px;
+      color: red;
+      取消倾斜
+      font-style:normal
+    } */
+
+
+    /* 遍历精灵图 */
+    /* .box {
+      width: 260px;
+      height: 300px;
+      background-color: #f3f3f3;
+    }
+    ul li {
+      float: left;
+      width: 50px;
+      height: 39px;
+      margin: 5px 0 0 5px;
+      background-color: red;
+      list-style-type: none;
+      background: url(./image/sprite.png) no-repeat;
+    } */
+
+
+    /* 输入框提示密码长度 */
+    /* .message {
+      display: inline-block;
+      padding-left: 30px;
+      background: url(./image/mess.png) no-repeat 10px center;
+    }
+    错误显示的信息
+    .wrong {    
+      color: red;
+      background-image: url(./image/wrong.png);
+    }
+    .right {
+      color: green;
+      background-image: url(./image/right.png);
+    } */
+
+    /* 百度换肤 */
+    /* * {
+      padding: 0;
+      margin: 0;
+    }
+    body {
+      height: 1900px;
+      background: url(./image/008.jpg) no-repeat top ;
+      background-size:100%;
+    }
+    .baidu li {
+      display: inline-block;
+      width: 70px;
+      height: 70px;
+      background-color: red;
+    }
+    .baidu img {
+      width: 100%;
+      height: 100%;
+    } */
+
+
+    /* 表单隔行变色 */
+    /* table {
+            width: 800px;
+            margin: 100px auto;
+            text-align: center;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        
+        thead tr {
+            height: 30px;
+            background-color: skyblue;
+        }
+        
+        tbody tr {
+            height: 30px;
+        }
+        
+        tbody td {
+            border-bottom: 1px solid #d7d7d7;
+            font-size: 12px;
+            color: blue;
+        }
+        
+        .bg {
+            background-color: pink;
+        } */
+    /* table {
+      width: 450px;
+      height: 120px;
+      border-collapse: collapse;
+    }
+    table th {
+      background-color: hotpink;
+    }
+    table td {
+      text-align: center;
+      border-bottom: 1px solid #eee;
+    }
+    .change {
+      background-color: skyblue;
+    } */
+
+    /* 全选按钮     border-collapse: collapse; 解决塌陷问题 有空隙*/
+    /* table {
+      width: 400px;
+      height: 120px;
+      margin-left: 90px;
+      border-collapse: collapse;
+    }
+    table th:first-child {
+      width: 50px;
+    }
+    table thead {
+      background-color: skyblue;
+    }
+    table tbody {
+      text-align: center;
+    }
+    tr {
+      height: 35px;
+    } */
+
+    /* tab栏切换 */
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    li {
+      list-style: none;
+    }
+    .tab {
+      background-color: red;
+      margin-left: 30px;
+    }
+    .tab_list {
+      overflow: hidden;
+    }
+    .tab_list li {
+      float: left;
+      padding: 0 40px;
+      height: 35px;
+      line-height: 35px;
+    }
+    .tab_list .current {
+      background-color: skyblue;
+    }
+    /* 把所有的.item隐藏起来 */
+    .tab_con .item {   
+      display: none;   
+    }
+    
+
+
+
+
+  </style>
+</head>
+<body>
+  改变元素内容 element.innerText
+  <p>
+  <!-- <button>按钮</button>
+  <div>2022年5月1日18:19:35</div>
+  <span></span>
+  <script>
+    // 1 获取元素   事件源
+    var btn = document.querySelector('button')    // 指定第一个选择器
+    var div = document.querySelector('div')    // 指定所有的div选择器
+    // 2 注册事件   事件类型
+    btn.onclick = function() {
+      // 3 事件处理方式
+      div.innerText = getDate()
+    }
+    // 声明一个日期函数
+    function getDate() {
+      var date = new Date();
+      var year = date.getFullYear();
+      var month = date.getMonth() + 1;
+      var date1 = date.getDate();
+      var arr = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六',]
+      var day = date.getDay();      // 返回的是0,1,2,3,4,5,6    arr[day] 取数组第day个
+      return year + '年' + month + '月' + date1 + '日' + arr[day];
+    }
+
+    // 元素可以不添加事件
+    var span = document.querySelector('span')
+    span.innerText = getDate();
+  </script> -->
+  </p>
+
+  操作元素之修改元素属性 
+  <!-- <button id="first">一</button>
+  <button id="second">二</button>
+  <p style="overflow: hidden;">
+    <img style='float: left;  width: 220px; height: 300px;'src="./image/001.jpg" title="0001" alt="">
+  </p>
+  <script>
+    // 1 获取元素(事件源)
+    var first = document.getElementById('first')
+    var second = document.getElementById('second')
+    var img = document.querySelector('img')
+    // 2 注册事件(事件类型)       获取到的元素 点击之后 添加函数表达式(匿名函数)
+    second.onclick = function() {
+      // 3 事件处理方式
+      img.src = 'image/002.jpg'     // 图片 的(.)属性src 发生变化
+      img.title = '001'
+    }
+    first.onclick = function() {
+      img.src = 'image/001.jpg'
+      img.title = '002'
+    }
+  </script> -->
+  
+  案例 不同时间显示不同图片,问候语
+  <!-- 伪代码  1 根据系统不同时间判断 用日期的内置对象
+  2 利用多分支设置不同图片
+  3 需要一个图片 根据时间修改图片 用到操作元素src属性
+  4 需要一个div 显示不同问候语 修改元素内容 -->
+  <!-- <p><img style="height: 300px;" src="./image/001.jpg" alt=""></p>
+  <div>上午好</div>
+  <script>
+    // 1 获取元素
+    var img = document.querySelector('img')
+    var div = document.querySelector('div')
+    // 2 当前时间 注册事件
+    var date = new Date();    // 创建一个日期对象
+    var h = date.getHours();
+    // 3 多分支判断显示文字图片
+    if (h < 12) {
+      img.src = 'image/001.jpg'
+      div.innerHTML = '上午好'
+    } else if( h < 18) {
+      img.src = 'image/004.jpg'
+      div.innerHTML = '下午好'
+    } else {
+      img.src = 'image/005.jpg'
+      div.innerHTML = '晚上好'
+    }
+  </script> -->
+
+  登录显示和隐藏密码    表单属性设置 input
+  <!-- 1 把密码框类型改为文本框 就可以看见密码
+  2 一个按钮俩种状态 点击切换密码框和文本框
+  3 算法 利用flag变量 判断flag的值 如果为1就是文本框 为0 就是密码框 -->
+  <!-- <div class="box">
+    <label for="">
+      <img src="./image/close.png" alt="">
+    </label>
+    <input type="password" id="inp">    
+  </div>
+  <script>
+    // 1 获取元素
+    var img = document.querySelector('img')
+    var input = document.getElementById('inp')
+    var flag = 0;                         // 必须是全局变量
+    // 2 注册事件 元素通过什么方式做什么事情
+    img.onclick = function() {    // 点击图片 调用函数表达式
+      if (flag == 0) {                // == 是判断    = 是赋值
+        input.type = 'text'       // type属性规定表单是什么类型的 button
+        img.src = 'image/open.png'
+        flag = 1;                 // flag = 1 可以使图片反复切换
+      } else {
+        input.type = 'password'
+        img.src = 'image/close.png'
+        flag = 0;
+      }
+    }
+  </script> -->
+
+  关闭广告
+  <!-- 1 display:none;隐藏后不占位 display:block;   visibility:hidden;占位
+  2 点击按钮 隐藏二维码 -->
+  <!-- <div class="box">
+    关闭
+    <img src="./image/006.jpg" alt="">
+    <i class="close-btn">x</i>
+  </div>
+  <script>
+    // 1 获取元素
+    var i = document.querySelector('i')    // 通过类选择器获取元素
+    var box = document.querySelector('.box')
+    // 2 注册事件
+    i.onclick = function() {      // 函数表达式
+      box.style.display = 'none';
+    }
+  </script> -->
+
+  遍历出精灵图      精灵图一般用的是负坐标 移动的是精灵图(向上 向左移动 都是负值)
+  <!-- 1 精灵图排列是有规律的
+  2 核心思路：利用for循环 修改精灵图位置 background-position
+  3 循环里面的i索引号*44 就是每个图标的位置 -->
+  <!-- <div class="box">
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <script>
+    // 1 获取元素  获取所有li
+    var lis = document.querySelectorAll('li')
+    for (var i = 0;i < lis.length;i++) {
+      var index = i * 44;           // 索引号*44 就是每个li的y坐标    
+      lis[i].style.backgroundPosition = '0 -'+ index +'px';   // position 地址 '0 0'x轴 y轴   '0 -'+index+'px'特殊写法
+    }
+  </script> -->
+
+  点击表单显示隐藏 输入框文字     手写 placeholder
+  <!-- <input type="text" value="手机" style="outline:none;">
+  <script>
+    // 1 获取元素
+    var input = document.querySelector('input')
+    // 2 注册事件  获取光标 onfocus
+    input.onfocus = function() {
+      if (input.value === '手机') {
+        input.value = ''
+      }
+      this.style.color = '#333'   // 获得焦点 里面的文字变黑
+    }
+    // 注册事件 失去光标 onblur
+    input.onblur = function() {
+      if (input.value === '') {
+        this.value = '手机'
+      }
+      input.style.color = '#999'    // 失去焦点 里面的文字变暗
+    }
+  </script> -->
+
+  输入框提示密码长度
+  <!-- 1 判断事件失去焦点
+  2 如果输入正确的信息 提示为绿色的图标   input.value.length 检查input里面字符长度
+  3 如果不到6位的 提示为红色的图标
+  4 里面的样式比较多 采取className修改样式 -->
+  <!-- <div class="box">
+    <input type="password" class="inputClass">
+    <p class="message">输入6-13位密码</p>
+  </div>
+  <script>
+    // 1 获取元素
+    var input = document.querySelector('.inputClass')
+    var message = document.querySelector('.message')
+    // 2 注册事件  谁怎样做了一件事   表单失去焦点
+    input.onblur = function() {   // 函数表达式
+      if (input.value.length < 6 || input.value.length > 13) {  
+        message.className = 'message wrong'
+        message.innerHTML = '你输入的不是6-13为字符'
+      } else {
+        message.className = 'message right'
+        message.innerHTML = '对喽'
+      }
+    }
+  </script> -->
+
+  开关灯
+  <!-- <button>开关灯</button>
+  <script>
+    var btn = document.getElementsByTagName('button')
+    // var btn = document.querySelector('button')
+    var flag = 0;   // 定义开关
+    btn[0].onclick = function() {
+      if (flag == 0) { 
+      document.body.style.backgroundColor = 'black'
+        flag = 1;
+      } else {
+        document.body.style.backgroundColor = '#fff'
+        flag = 0;
+      }
+    }
+  </script> -->
+  
+  百度换肤      排他思想     获取指定ul里面的img  var lis = document.querySelector('.baidu').querySelectorAll('img')
+  <!-- <ul class="baidu">
+    <li><img src="./image/008.jpg" alt=""></li>
+    <li><img src="./image/009.jpg" alt=""></li>
+    <li><img src="./image/010.jpg" alt=""></li>
+    <li><img src="./image/011.jpg" alt=""></li>
+  </ul>
+  <script>
+    // 1 获取元素    获取ul(.baidu)里面的所有img
+    var imgs = document.querySelector('.baidu').querySelectorAll('img')
+    for (var i = 0;i < imgs.length;i++) {
+      imgs[i].onclick = function() {
+        // this.src就是图片路径   image/009.jpg
+        // document.body.style.backgroundImage = 'url(image/009.jpg)'
+        document.body.style.backgroundImage = 'url(' + this.src + ')'
+      }
+    }
+  </script> -->
+ 
+  表单隔行换色  onmouseover 鼠标经过    thead头部 tbody主体 tr行 th头部列 td主体列
+  <!-- <table>
+    <thead>
+      <tr>
+        <th>1</th>
+        <th>2</th>
+        <th>3</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>5</td>
+        <td>5</td>
+        <td>5</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>5</td>
+        <td>5</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>5</td>
+        <td>5</td>
+      </tr>
+    </tbody>
+  </table>
+  <script>
+    // 1 获取tbody里面的所有tr    
+    var trs = document.querySelector('tbody').querySelectorAll('tr')
+    for (var i = 0;i < trs.length;i++) {
+      trs[i].onmouseover = function() {
+        this.className = 'change'
+      }
+      trs[i].onmouseout = function() {
+        this.className = ''
+      }
+    }
+  </script> -->
+
+  全选按钮      checked=checked 选中的属性
+  <!-- <table>
+    <thead>
+      <tr>
+        <th><input type="checkbox" id="checkboxAll"></th>
+        <th>1</th>
+        <th>1</th>
+        <th>1</th>
+      </tr>
+    </thead>
+    <tbody id="tbodyId">
+      <tr>
+        <td><input type="checkbox"></td>
+        <td>2</td>
+        <td>2</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox"></td>
+        <td>3</td>
+        <td>3</td>
+        <td>3</td>
+      </tr>
+      <tr>
+        <td><input type="checkbox"></td>
+        <td>4</td>
+        <td>4</td>
+        <td>4</td>
+      </tr>
+    </tbody>
+  </table>
+  <script>
+    // 1 获取全选按钮input 获取下面的全部input按钮
+    var checkboxAll = document.getElementById('checkboxAll')
+    var tbodyId = document.getElementById('tbodyId').getElementsByTagName('input')
+    // 2 注册事件 点击按钮函数表达式  3 事件处理方式
+    checkboxAll.onclick = function() {
+      // this.checked 可以得到当前复选框是否选中状态 true 不是选中状态为false
+      console.log(this.checked)     
+      for (var i = 0;i < tbodyId.length;i++) {
+        tbodyId[i].checked = this.checked;      // 全选按钮
+      }
+    }
+    // 下面复选框全部选中 上面全选按钮选中
+    for (var i = 0;i < tbodyId.length;i++) {    // 外层for循环是给4个复选框添加点击绑定事件
+      tbodyId[i].onclick = function() {
+        var flag = true;                        // 控制全选按钮是否被选中
+        // 每次点击复选框都要循环检查3个按钮是否被选中
+        for(var i = 0;i < tbodyId.length;i++) {   
+          if (!tbodyId[i].checked) {          // !tbodyId[i].checked 里面有一个没被选中 结果就取反 如果都选中,就不会执行if 结果直接为true
+            flag = false;
+          }
+        }
+        checkboxAll.checked = flag;     // flag为true 全选按钮选中
+      }
+    }
+  </script> -->
+
+  tab栏切换                 重点
+  <div class="tab">
+    <div class="tab_list">
+      <ul>
+        <li class="current">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+      </ul>
+    </div>  
+    <div class="tab_con">
+      <!-- style="display: block;" 通过行内样式把第一个显示出来 -->
+      <div class="item" style="display: block;">111</div> 
+      <div class="item">222</div>
+      <div class="item">333</div>
+      <div class="item">444</div>
+    </div>
+  </div>
+  <script>
+    // 上面的选项卡 点击一个li变为红色 其他li不变(拍他思想)  修改类名的方式
+    // 1 获取元素 上面选项卡的全部li
+    var tab_list = document.querySelector('.tab_list') 
+    var lis = tab_list.querySelectorAll('li')
+    // 获取元素 内容的div
+    var items = document.querySelectorAll('.item')
+    // 每个li绑定点击事件
+    for (var i = 0;i < lis.length;i++) {
+      // 开始给5个li 设置索引号(设置属性值 自定义属性)
+      lis[i].setAttribute('index',i)
+      // 2 注册事件 点击li后
+      lis[i].onclick = function() {
+        // 再一次循环全部li 查看哪个li被点击(排他思想)   点击的这个li添加current类名    其他类名变为空
+        for (var i = 0;i <lis.length;i++) {
+          lis[i].className = ''
+        }
+        this.className = 'current'    // 点击自己后 添加类名 变颜色   this指向当前点击变颜色的li
+
+        // 下面的显示内容模块
+        // 获取当前点击选项卡的索引号(自定义属性)
+        var index = this.getAttribute('index')
+        console.log(index)
+        // 排他思想 所有的div先设置隐藏元素
+        for (var i = 0;i < lis.length;i++) {
+          items[i].style.display = 'none'
+        }
+        items[index].style.display = 'block'    // 索引为index的div显示元素
+      }
+    }
+    
+  </script>
+
+</body>
+</html>

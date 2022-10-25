@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 1-100和  平均值
+    var sum = 0;
+    var average = 0;
+    for (i = 1;i <= 100;i++) {
+      sum = sum + i
+    }
+    average = sum / 100
+    console.log(sum + '平均值' +average)
+
+    // 1-100 偶数和
+    var odd = 0;
+    for (j = 1;j <= 100;j++) {
+      if (j % 2 == 0) {
+        odd = odd + j
+      }
+    }
+    console.log(odd)
+
+    // 1-100 能被7整除的和
+    var e = 1;
+    var sum2 = 0;
+    while (e <= 100) {
+      if (e % 7 == 0) {
+        sum2 += e
+      }
+      e++;
+    }
+    console.log(sum2)
+
+    // 打印4行6列 ★
+    // var str = ''
+    // for (var k = 1;k <= 4;k++) {
+    //   for (var z = 1; z <= 6;z++) {
+    //     str = str + '★'
+    //   }
+    //   str += '\n'
+    // }
+    // console.log(str)
+
+    // 打印正三角
+    // var str = '';
+    // for (var k = 1;k <= 5;k++) {
+      //   for (var z = k; z <= 4;z++) {
+      //    str = str + '★'
+      //   }
+      //   str += '\n'
+      // }
+      // console.log(str)
+      
+    // 打印倒三角
+    var str = '';
+    for (var k = 1;k <= 5;k++) {
+      for (var z = 1; z <= k;z++) {
+       str = str + '★'
+      }
+      str += '\n'
+    }
+    console.log(str)
+
+    // 九九乘法表
+    var str = '';
+    for (var k = 1;k <= 9;k++) {
+      for (var z = 1; z <= k;z++) {
+       str += z + '×' + k + '=' + z * k + '\t'
+      }
+      str += '\n'
+    }
+    console.log(str)
+
+    // 输入 admin表示成功 否则让用户一直输入 
+    var message = prompt('输入')
+    while (message !== 'admin') {
+      var message = prompt('输入..')
+      message++;
+    }
+    alert('admin')
+
+    // 1-100 跳过个位数是3的 之和     错
+    sum3 = 0;
+    for (var t = 1;t <= 100;t++) {
+      if (t % 3 == 0) {
+        continue;    // /kənˈtɪnjuː/ 跳出本次循环
+      }
+      sum3 += t
+    }
+    console.log(sum3)
+  </script>
+</body>
+</html>

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    // var age = prompt('输入年龄');
+    // if( age >= 18) {
+    //   alert( '你' + age + '岁了,可以上网')
+    // } else {
+    //   alert('年龄不够')
+    // }
+
+    // // 闰年 能被4整除 且 不能整除100的 或者 能被400整除的
+    // var year = prompt('输入年份');
+    // if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
+    //   alert(year + '是闰年')
+    // } else {
+    //   alert(year + '是平年')
+    // }
+
+    // // 判断成绩案例
+    // var score = prompt('输入成绩');
+    // if ( score >= 90) {
+    //   alert( score + 'A')
+    // } else if (score >= 80) {
+    //   alert( score + 'B')
+    // } else if (score >= 70) {
+    //   alert(score + 'C') 
+    // } else if (score >=60) {
+    //   alert (score + 'D')
+    // } else {
+    //   alert (score + 'E')
+    // }
+
+    // // 单个数字前面补0
+    // var time = prompt('输入一个数');
+    // var result = time < 10 ? '0' + time : time;
+    // alert(result)
+
+    // switch (2) {
+    //   case 1:
+    //     console.log('1')
+    //     break;
+    //   case 2:
+    //     console.log('2')
+    //     break;
+    //   case 3:
+    //     console.log('3')
+    //     break;
+    //   default:
+    //     console.log('no')
+    // }
+
+    // // 查找水果
+    // var fruit = prompt('输入水果');
+    // switch ( fruit ) {
+    //   case '苹果':
+    //     alert('10/1斤 苹果');
+    //     break;
+    //   case '榴莲':
+    //     alert('100/1斤 榴莲');
+    //     break;
+    //   default:
+    //     alert('不是水果')
+    //     break;
+    // }
+
+    // for (var i = 1; i <= 100; i++) {
+    //     console.log('hello word')
+    //   }
+    
+    // for 循环执行相同代码
+    // var num = prompt('输入循环次数')
+    // for (var j = 1; j <= num; j++) {
+    //   console.log('你好呀')
+    // }
+    // for 循环执行不同代码
+    // for (var i = 1;i <= 100;i++) {
+    //   if (i == 1) {
+    //     console.log('他1岁 出生了')
+    //   } else if ( i == 100) {
+    //     console.log('他100岁了 死了')
+    //   } else {
+    //     console.log('他今年' + i + '岁了')
+    //   }
+    // }
+
+    // for 重复执行某些操作   1-100相加               重要
+    // var sum = 0;
+    // for (i = 1;i <= 100;i++) {
+    //   // sum = sum + i
+    //   sum += i;
+    // }
+    // console.log(sum)
+
+    // // 1-100 之间的平均值
+    // var num = 0;
+    // var average = 0;
+    // for (i = 1;i <= 100; i++) {
+    //   // num = num + i;
+    //   num += i;
+    //   average = num / 100
+    // }
+    // console.log('1-100平均值' + average)
+    // // 1-100 偶数和 奇数和
+    // var even = 0;
+    // var odd = 0;
+    // for(i = 1;i <= 100;i++) {
+    //   if ( i % 2 == 0) {
+    //     even = even + i
+    //   } else {
+    //     odd = odd + i
+    //   }
+    // }
+    // console.log('1-100 偶数和' + even, '-----   1-100 奇数和' + odd)
+    // // 1-100 能被3整除的和
+    // var result = 0;
+    // for (var i = 1; i <= 100; i++) {
+    //   if ( i % 3 == 0) {
+    //     result += i
+    //   }
+    // }
+    // console.log('1-100 能被3整除的和' + result)
+
+    // 学生成绩案例                                           重点
+    // var num = prompt('输入班级总人数');  //班级总人数
+    // var sum = 0;      // 成绩和
+    // var average = 0;    // 成绩平均值
+    // for (i = 1; i <= num; i++ ) {
+    //   var score = prompt('输入第' + i + '人成绩')
+    //   sum = sum + parseFloat(score);
+    // } 
+    // average = sum / num;
+    // alert('成绩和' + sum);
+    // alert('成绩平局值' + average);
+
+    // 一行打印★
+    // var num = prompt('输入★个数')
+    // var str = '';
+    // for (i = 1; i <= num; i++) {
+    //   str = str + '★'  
+    // }
+    // console.log(str)
+    
+    // 五行打印五颗★
+    // var str = '';
+    // for (i = 1;i <= 5;i++) {    // 外层循环打印5行
+    //   for (j = 1;j <= 5;j++) {  // 里层循环一行打印5个
+    //     str = str + '★'
+    //   }
+    //   str = str + '\n';
+    // }
+    // console.log(str)
+    // 自定义几行几列★
+    // var rows = prompt('输入几行★')
+    // var cols = prompt('输入几列★')
+    // var str = '';
+    // for (i = 1;i <= rows;i++) {
+    //   for (j = 1;j <= cols;j++) {
+    //     str = str + '★'
+    //   }
+    //   str = str + '\n';
+    // }
+    // console.log(str)
+    // 倒三角形
+    // var str = '';
+    // for (i = 1;i <= 10;i++) {   // 有几行
+    //   for (j = i; j <= 10;j++) {  // 有几列
+    //     str = str + '★'
+    //   }
+    //   str += '\n'
+    // }
+    // console.log(str)
+    // 九九乘法表
+    // var str = '';
+    // for (var i = 1;i <= 9;i++) {    // 有几行
+    //   for (var j = 1;j <= i;j++) {  // 有几列
+    //     // str = str + '★'
+    //     str += j + '×' + i + '=' + j * i + '\t'
+    //   }
+    //   str = str + '\n'
+    // }
+    // console.log(str)
+
+
+    // while
+    // 从1到100岁
+    // var i = 1;
+    // while (i <= 100) {
+    //   console.log('今年'+ i +'岁了')
+    //   i++;
+    // }
+    // // 1-100的和
+    // var num = 1;
+    // var sum = 0;
+    // while(num <= 100) {
+    //   sum = sum + num
+    //   num++;
+    // }
+    // console.log('和是' + sum)
+    // // 必须说你爱我
+    // var message = prompt('输入你爱我');
+    // while ( message !== '我爱你') {
+    //   var message = prompt('爱我')  // 把数据存入变量中
+    //   message++;
+    // }
+    // alert('对喽')
+
+    
+    // do while
+    // 打印1-100
+    // var i = 1;
+    // do {
+    //   console.log('今年'+ i +'岁了')
+    //   i++;
+    // } while (i <= 100)
+    // // 1-100的和
+    // var sum = 0;
+    // var j = 1;
+    // do {
+    //   sum = sum + j
+    //   j++;
+    // } while (j <= 100)
+    // console.log(sum)
+    // // 必须说你爱我
+    // do {
+    //   var message = prompt('输入你爱我')
+    // } while (message !== '我爱你')
+    // alert('对喽')
+
+
+    // continue 退出本次循环
+    // 1-100 除了7的倍数 之间的和
+    // var sum = 0;
+    // for (var i = 1;i <= 100;i++) {
+    //   if (i % 7 == 0) {
+    //     continue;
+    //   }
+    //   sum = sum + i
+    // }
+    // console.log('1-100 除了7的倍数 之间的和:  ' + sum)
+    
+
+
+
+   </script>
+</head>
+<body>
+  流程控制
+  <p>
+    顺序结构
+      从上往下执行代码
+    分支结构
+      由上至下执行代码过程中 根据条件不同 执行不同代码 得到不同结果
+      if语句
+        语句结构    执行思路:如果条件表达式为真 执行语句 为假 跳过执行语句
+          if (条件表达式) {
+            // 执行语句
+          }
+          if (3 > 5) {
+            alert('你好')
+          }
+      if else 双分支语句  多选一 最后只能执行一句语句
+        语句结构  执行思路:如果表达式结果为真 执行语句1 结果为假 执行语句2
+          if (条件表达式) {
+            // 执行语句1
+          } else {
+            // 执行语句2  
+          }
+      if else if 多分支语句  
+        语句结构  执行思路:如果满足条件1 则执行语句1 退出if循环 不满足条件1 执行条件2 如果都不满足 执行else
+          if (条件表达式1) {
+            语句1
+          } else if (条件表达式2) {
+            语句2
+          } else if (条件表达式3) {
+            语句3
+          } else {
+            最后的语句
+          }
+
+      三元表达式  由三元运算符组成的式子  简化版的if else
+        ++num 一元运算符    3 + 5 二元表达式    ? : 三元表达式
+        语法结构    执行思路:如果条件表达式为真 执行表达式1 如果为假 执行表达式2
+          条件表达式 ? 表达式1 : 表达式2
+          var num = 10;
+          var result = num > 5 ? '是的' : '不是的';
+          console.log(result)
+
+      switch语句  多分支语句 也可以实现多选一 
+        语法结构  switch(转换 开关)   case(例子 选项)
+          执行思路:用表达式的值和case后面的值匹配 如果匹配上 就执行case里面的语句 都没匹配上 执行default语句
+          switch (表达式) {
+            case value1:
+              执行语句1
+              break;
+            case value2:
+              执行语句2
+              break;
+            default:
+              执行最后语句;
+          }
+          表达式和value1里面的值匹配的时候 关系是全等(值 数据类型) ===
+          break 如果当前case里面没有break 不会退出switch 继续执行下一个case
+
+      if else 与 switch case 区别
+        switch case 通常处理比较确定值的情况   if else 用于范围的判断
+        switch 进行条件判断后 直接执行条件语句    if else 有几个条件 判断几次
+        分支比较少时 if else 效率比较高
+        分支比较多时 switch case 效率比较高
+  </p>
+
+  循环结构
+  <p>
+    目的: 重复执行某些代码 通常和计数有关系
+    for循环
+      for (初始化变量; 条件表达式; 操作表达式) {
+        // 循环体
+      }
+      初始变化量 用var声明一个普通变量 通常用作计数器使用
+      条件表达式 用来决定每一次循环是否继续执行 这是终止条件
+      操作表达式 每次循环最后执行的代码 用于计数器变量进行更新(递增 递减)   主要目的:更新初始变量
+
+      for (var i = 1; i <= 100; i++) {
+        console.log('hello word')
+      }
+      for 循环执行过程
+        1 首先执行计数器变量 var i = 1, 这句话在for里面只执行一次
+        2 i <= 100 判断是否满足条件 如果满足 执行循环体 不满足 直接退出循环
+        3 i++ 最后执行  i++是单独写的代码 递增 递减   第一轮结束
+        4 接着执行 i <= 100; 满足条件 执行循环体 不满足条件 退出循环 第二轮结束 一直循环下去
+      
+      断点调试 在Chrome f12 调试  如果不出结果 用 f5 
+    双重for循环
+      for (外层初始化变量;外层条件表达式;外层操作表达式) {
+        for (内层初始化变量;内层条件表达式;内层操作表达式)
+        // 执行语句
+      }
+        1 把里层循环看做是外层循环的语句
+        2 外层循环一次 里层的循环执行全部
+
+
+    while循环   while 当...的时候 
+      执行思路:当条件表达式为true 执行循环体 否则 退出循环体
+      while (条件表达式) {
+        // 循环体
+      }
+      var num = 1;    // 计数器
+      while (num <= 100) {
+        console.log('你好')
+        num++;      // 不加会进入死循环
+      }
+        执行过程:先执行num=1 接着num<=100 结果为true 执行循环体 为false 退出循环 再执行num++ 再到num<=100
+      
+
+    do while循环
+      do {
+        // 循环体
+      } while (条件表达式)
+      执行思路:先执行循环体 再进行判断 如果条件为真 则执行循环体 否则 退出循环体
+      var i = 1;      // 计数器
+      do {
+        console.log('你好')
+        i++;                // 操作表达式 
+      } while (i <= 100)    // 条件判断
+
+
+    continue break 关键字
+      continue(继续) 退出当前循环 继续执行剩余次数循环
+        for (var i = 1;i <= 5;i++) {
+          if (i == 3) {
+            continue            // 退出当前循环 不再执行下面代码 跳到i++
+          }
+          console.log('第'+ i + '个')
+        }
+          执行思路:i=1 i<=5 判断i是否等于3 =3 执行continue 退出循环 接着执行i++ 不等于3 执行循环体 然后再执行i++
+
+      break(打破) 退出整个循环
+        for (var i = 1;i <= 5;i++) {
+          if (i == 3) {
+            break;
+          }
+          console.log('第' + i + '个')
+        } 
+    
+    命名规范
+      变量 函数的命名必须有意义     变量一般用名称      函数一般用动词
+      操作符 左右俩侧保留一个空格
+      单行注释规范 注释的后面写一个空格
+      小括号左右俩侧包含一个空格
+  </p>
+</body>
+</html>

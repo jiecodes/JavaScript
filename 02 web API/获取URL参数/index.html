@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div></div>
+  <script>
+    console.log(location.search)  // 返回的是 ?uname=andy    search 返回参数
+    var params = location.search.substr('1');   // substr('起始位置','截取的字符') 截取字符串
+    console.log(params)
+    var arr = params.split('=')     // split('分隔符') 把字符串分隔成数组 
+    console.log(arr)
+    var div = document.querySelector('div')
+    div.innerHTML = arr[1] + '欢迎您'
+  </script>
+</body>
+</html>

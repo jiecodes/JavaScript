@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 获取鼠标在盒子坐标   元素偏移量 offset */
+    /* div {
+      width: 200px;
+      height: 200px;
+      margin-left: 50px;
+      background-color: hotpink;
+    } */
+  
+    /* 拖拽模态框(登录框) */
+    /* * {
+      padding: 0;
+      margin: 0;
+    }
+    a {
+      color: black;
+      text-decoration: none;
+    }
+    .login-header {
+      font-size: 26px;
+      text-align: center;
+    }
+    .login {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 512px;
+      height: 280px;
+      background-color: #fff;
+      box-shadow: 0px 0px 2px #ddd;
+      z-index: 9999;
+    }
+    .close {
+      position: absolute;
+      top: -24px;
+      right: -24px;
+      width: 40px;
+      height: 40px;
+      text-align: center;
+      line-height: 40px;
+      font-size: 14px;
+      border-radius: 50%;
+      background-color: #fff;
+    }
+    .title {
+      width: 100%;
+      height: 40px;
+      line-height: 60px;
+      font-size: 18px;
+      text-align: center;
+      background-color: #fff;
+      cursor: move;
+    }
+    .input-content {
+      margin-top: 30px;
+    }
+    .input label{
+      float: left;
+      width: 90px;
+      padding-right: 10px;
+      text-align: right;
+      height: 35px;
+      line-height: 35px;
+    }
+    .input:first-child {
+      margin-bottom: 20px;
+    }
+    .input input {
+      width: 350px;
+      height: 35px;
+      line-height: 35px;
+      padding-left: 10px;
+      border: 1px solid #ebebeb;
+    }
+    .button {
+      width: 300px;
+      height: 45px;
+      background-color: #ffffff;
+      text-align: center;
+      line-height: 45px;
+      margin: 30px auto;
+      border: 1px solid #ebebeb;
+    }
+    .login-bg {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, .3);
+    } */
+    
+    /* 淘宝固定右侧侧边栏   scroll      点击按钮返回顶部  window.scroll(x,y)  */
+    /* * {
+      margin: 0;
+      padding: 0;
+    }
+    .w {
+      margin: 0 auto;
+      width: 1200px;
+      text-align: center;
+    }
+    .slider {
+      position: absolute;
+      left: 50%;
+      top: 400px;
+      margin-left: 600px;
+      width: 45px;
+      height: 130px;
+      background-color: #aa3232;
+    }
+    .header {
+      height: 250px;
+      background-color: green;
+    }
+    .banner {
+      height: 400px;
+      background-color: red;
+    }
+    .main {
+      height: 900px;
+      background-color: blue;
+    }
+    .goBack {
+      display: none;
+      position: absolute;
+      bottom: 0;
+    } */
+  
+    
+  
+  </style>
+</head>
+<body>
+  获取鼠标在盒子坐标   元素偏移量 offset
+  <!-- <script>
+    window.onload = function() {      // 窗口加載事件 最后加载
+      var div = document.querySelector('div')
+      div.addEventListener('mousemove', function(e) {    // e事件对象(形参)
+        console.log(e.pageX)            // 鼠标到body的距离
+        console.log(div.offsetLeft)     // 盒子到body的距离
+        var x = e.pageX - div.offsetLeft;
+        var y = e.pageY - div.offsetTop;
+        div.innerHTML = 'x坐标' + x + '\t' + 'y坐标' + y
+      })  
+    }
+  </script>
+  <div></div> -->
+
+  拖拽模态框(登录框)     offset
+  <!-- <div class="login-header"><a href="javascript:;">点击弹出登录框</a></div>
+  <div class="login">
+    <div class="title">登录会员</div>
+    <div class="close"><a id="link" href="javascript:;">关闭</a></div>
+    <div class="input-content">
+      <div class="input"> 
+        <label for="">用户名</label>
+        <input type="text" placeholder="输入用户名"></input>
+      </div>
+      <div class="input">
+        <label for="">密码</label>
+        <input type="password" placeholder="输入密码">
+      </div>
+      <div class="button"><a id="login-btn" href="javascript:;">登录按钮</a></div>
+    </div>
+  </div>
+  遮罩层
+  <div class="login-bg"></div>
+  <script>
+    window.onload = function() {        // 窗口加载事件
+      var header = document.querySelector('.login-header')
+      var link = document.querySelector('#link')
+      var login = document.querySelector('.login')
+      var bg = document.querySelector('.login-bg')
+      var title = document.querySelector('.title')
+      header.addEventListener('click', function() {   
+        bg.style.display = 'block'
+        login.style.display = 'block'
+      })
+      link.addEventListener('click', function() {
+        bg.style.display = 'none'
+        login.style.display = 'none' 
+      })
+      // 开始拖拽 鼠标按下,获取鼠标在盒子内的坐标     鼠标在盒子内的坐标 = 鼠标在页面的坐标 - 鼠标在盒子内的坐标(只能可读,不能修改)
+      title.addEventListener('mousedown', function(e) {         // e事件(形参)
+        var x = e.pageX - login.offsetLeft;
+        var y = e.pageY - login.offsetTop;
+        // 鼠标移动(因为鼠标按下移动 所以在按下里面写移动)     输入框的left top = 鼠标在页面坐标 - 鼠标在盒子内的坐标 + 'px'
+        document.addEventListener('mousemove', move)  
+        function move(e) {                              // 声明函数
+            login.style.left = e.pageX - x + 'px'
+            login.style.top = e.pageY - y + 'px'
+          }
+        // 鼠标松开 让鼠标移动事件移除
+        document.addEventListener('mouseup', function() {
+          document.removeEventListener('mousemove', move)       // removeEventListener 移除监听事件
+        })
+      })
+    }
+  </script> -->
+
+  仿京东放大镜          offset
+
+  淘宝固定右侧侧边栏     scroll
+    window.pageYOffset 页面被卷去的头部   parseInt 返回整数
+  <!-- <div class="slider">
+    <div class="goBack">返回顶部</div>
+  </div>
+  <div class="header w">头部</div>
+  <div class="banner w">横幅</div>
+  <div class="main w">主体</div>
+  <script>
+    // 这里的变量相减的赋值 必须写在 scroll 函数外面 不然滚动后就不准了
+    var slider = document.querySelector('.slider')
+    var banner = document.querySelector('.banner')
+    var main = document.querySelector('.main')
+    var goBack = document.querySelector('.goBack')
+    // banner盒子上面卷去的位置
+    var bannerTop = banner.offsetTop  
+    // 侧边栏固定定位之后变化的数值  = 侧边栏距离顶部距离 - banner距离顶部距离
+    var sliderTop = slider.offsetTop - bannerTop
+    // main盒子上面卷去得位置
+    var mainTop = main.offsetTop
+    // 1 添加页面滚动事件
+    document.addEventListener('scroll', function() {
+      console.log(parseInt(window.pageYOffset))
+      // 2 当页面卷去头部大于等于290(bannerTop) 侧边栏改(slider)为固定定位
+      if (window.pageYOffset >= bannerTop) {
+        slider.style.position = 'fixed';
+        slider.style.top = sliderTop + 'px'
+      } else {
+        slider.style.position = 'absolute'
+        slider.style.top = sliderTop + bannerTop + 'px'   // sliderTop侧边栏距离上面距离 bannerTop导航栏距离上面的距离
+        // slider.style.top =  '300px'   
+      }
+      // 3 当页面(window.pageYOffset)滚动main区域 让goBack文字显示
+      if (window.pageYOffset >= mainTop) {
+        goBack.style.display = 'block'
+      } else {
+        goBack.style.display = 'none'
+      }
+    })
+  </script> -->
+  
+  点击按钮返回顶部      页面滚动window.scroll(x,y) x,y不需要单位
+  <!-- <div class="slider">
+    <div class="goBack">返回顶部</div>
+  </div>
+  <div class="header w">头部</div>
+  <div class="banner w">横幅</div>
+  <div class="main w">主体</div>
+  <script>
+    // 这里的变量相减的赋值 必须写在 scroll 函数外面 不然滚动后就不准了
+    var slider = document.querySelector('.slider')
+    var banner = document.querySelector('.banner')
+    var main = document.querySelector('.main')
+    var goBack = document.querySelector('.goBack')
+    // banner盒子上面卷去的位置
+    var bannerTop = banner.offsetTop  
+    // 侧边栏固定定位之后变化的数值  = 侧边栏距离顶部距离 - banner距离顶部距离
+    var sliderTop = slider.offsetTop - bannerTop
+    // main盒子上面卷去得位置
+    var mainTop = main.offsetTop
+    // 1 添加页面滚动事件
+    document.addEventListener('scroll', function() {
+      console.log(parseInt(window.pageYOffset))
+      // 2 当页面卷去头部大于等于290(bannerTop) 侧边栏改(slider)为固定定位
+      if (window.pageYOffset >= bannerTop ) {
+        slider.style.position = 'fixed';
+        slider.style.top = sliderTop  + 'px'
+      } else {
+        slider.style.position = 'absolute'
+        slider.style.top = sliderTop + bannerTop + 'px'   // sliderTop侧边栏距离上面距离 bannerTop导航栏距离上面的距离
+        // slider.style.top =  '300px'   
+      }
+      // 3 当页面(window.pageYOffset)滚动main区域 让goBack文字显示
+      if (window.pageYOffset >= mainTop) {
+        goBack.style.display = 'block'
+      } else {
+        goBack.style.display = 'none'
+      }
+    })
+    // 点击回到顶部 让窗口回到页面最上方    window.pageYOffset 窗口垂直距离
+    goBack.addEventListener('click', function() {
+      // window.scroll(x,y)
+      // window.scroll(0,0)
+      // 调用动画函数
+      animate(window, 0)
+      // 添加动画函数
+      function animate(obj, target, callback) {   // 形参 封装动画函数 obj目标对象 target目标位置 
+        clearInterval(obj.timer)
+        obj.timer = setInterval(function() {      // 添加定时器
+          var step = (target - window.pageYOffset) / 10     // 每次移动的距离 缓动动画  Math.ceil往大取整,解决不能准确到目标位置
+          // 解决不能准确到目标位置
+          step = step > 0 ? Math.ceil(step) : Math.floor(step)   // step>0 往大取整  step<0 往小取整
+          if (window.pageYOffset == target) {
+            clearInterval(obj.timer)                // 清除定时器
+            // 回调函数写在定时器结束里面
+            if (callback) { // 如果有callback这个函数 
+              callback(); // 调用函数
+            }
+          }
+          // obj.style.left = obj.offsetLeft + step   
+          window.scroll(0, window.pageYOffset + step) // window.pageYOffset不需要单位
+        }, 15)
+      }
+    })
+  </script> -->
+
+  筋斗云
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+</body>
+</html>

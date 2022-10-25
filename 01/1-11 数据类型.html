@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  简单数据类型  基本数据类型 值类型(在存储时变量中存储的是值本身)
+    string(字符串) number(数字型) Boolean(布尔型) undefined(变量未赋值) unll(非数字)
+    简单数据类型存放到栈里 里面直接开辟一个空间存放的是值
+
+    简单数据类型 null 返回的是object(对象)    按理说返回的是值本身 这是 艾奇 遗留的问题 后来没改 
+    var timer = null;
+    console.log(typeof timer)   // object
+    如果我们有个变量打算存储对象,暂时没想好存啥,可以先给null
+
+
+  复杂数据类型  引用数据类型
+    通过new关键字创建的对象(系统对象 自定义对象) 如:Object(对象)  Array(数组)  Date(日期对象)
+    首先在栈里存放地址 十六进制表示 然后这个地址指向堆里面的数据
+
+
+  栈 堆空间分配区别   内存分为栈和堆
+    栈(zhan 由操作系统自动分配释放存储函数的参数、局部变量的值)     简单数据类型里面放栈
+      
+    堆(一般由程序员分配释放存储 若程序员不释放 由垃圾回收机制释放)  复杂数据类型里面放堆
+
+  简单数据类型传参
+    函数的形参可以看做一个变量,当我们把一个值类型变量作为参数传给函数的形参时,就是把变量在栈空间复制一份给形参,那么在方法内部对形参做修改,不会影响外部变量
+
+  复杂数据类型传参
+    函数的新参可以看做一个变量,当我们把引用类型变量传给形参时,把变量在栈空间保存的堆地址复制给了形参,新参和实参保存的是同一个堆地址,操作的是同一个对象
+      function Person(name) {
+        this.name = name;
+      }
+      function f1(x) {          // x = p
+        console.log(x.name);    // 2 张三 p 是张三 传实参到形参 所以x也是张三
+        x.name = '李四'         // 对名字重新赋值
+        console.log(x.name)     // 3 李四
+      }
+      var p = new Person('张三')
+      console.log(p.name)       // 1 张三 函数不调用 不执行(所以这是第一个) 
+      f1(p);                    
+      console.log(p.name)       // 4 李四 内部修改后 外部也跟着变 因为修改的是同一个地址 x和p是同一个地址
+</body>
+</html>
