@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  js中的异步任务  定时器 ajax(XMLHttpRequest) promise
+  reduce() filter()
+  @click.native 修饰符 给自定义组件绑定原生事件时 如果不加.native不起作用
+  mapActions  mapGetters  vuex中的
+
+  如何理解生命周期
+  如何进行非父子之间的组件通信
+    事件总线  
+  Vue的响应式原理
+    不要认为数据发生改变,界面跟着更新,并不是理所当然的.   (计算机没有黑魔法)
+    const app = new Vue({el: '#app', data: {message: 你好 }})     
+    1 通过 app.message修改数据  
+      Vue如何监听message数据的改变    
+        Object.defineProperty -> 监听对象属性的变化   define Property() 定义对象中新属性或者修改原有的属性
+      数据发生变化,Vue如何通知那些地方,界面发生刷新
+        发布订阅者模式(设计模式)
+      响应式原理图 解析
+      上面 message -> Dep对象 -> subs -> [watcher1, watcher2]
+      下面 解析el 每一个{{}}对应创建 watcher 加到 数组watcher里面  
+      一个属性对应一个 Dep对象 它是一个数组 数组里面要放watcher
+
+      修改message数据 data数据调用Dep对象的 defineProperty:notify 之后遍历对象 watcher 调用update 修改视图内容  
+  <div id="app">{{message}}</div>
+  <script src="./vuecli3mall/node_modules/vue/dist/vue.js"></script>
+  <script>
+    const obj = new Vue({
+      el: '#app',
+      message: '你好啊'  
+    })
+    // vue监听message数据改变  vue内部做的事情
+    const obj = {
+      message: '你好啊'
+    }
+    Object.keys(obj).forEach(key => {
+      let value = obj[key]    // 拿到obj对应的每一个值
+      Object.defineProperty(obj, key, {
+        // get时订阅 set时遍历所有订阅进行更新
+        set(newValue) {
+          // 告诉谁 谁的值需要改变
+          value = newValue      // 监听 key 属性值的改变
+        },
+        get() {  
+          // 1: get -> update   1,2,3 订阅 newValue的属性改变
+          // 2: get -> update 
+          // 3: get -> update 
+          return value          // 获取 key 对应的值
+        }
+      })     // 监听值的改变 重新定义每一个值的属性
+    })
+
+    // 发布订阅者模式    dependence 依赖性
+    class Dep {
+      constructor() {
+        this.subscribes = []
+      }
+    } 
+  </script>
+
+
+    
+</body>
+</html>

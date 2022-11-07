@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  github创建好项目后 和自己代码联系起来
+  方式一
+    1 把github上的项目下载到本地(左边的目录上)         git clone https://github.com/jiecodes/mall.git
+    2 把自己的代码拷贝到 下载的项目中
+    3 查看 代码状态(先是红色的 没有添加)              git status
+    4 添加代码                                      git add .
+    5 初始化项目(提交到本地)                         git commit -m '初始化项目'
+    6 提交到服务器                                   git push
+  方式二
+    1 在自己的项目下
+    2 先在自己的文件夹下创建.git                     git init
+    3 添加代码                                      git add .
+    4 初始化项目(提交到本地)                         git commit -m '初始化项目'
+    5 把本地的git和github上的git联系起来             git remote add origin https://github.com/jiecodes/mall.git
+      删除关联的origin的远程库(上一步5 报错)          git remote rm origin 
+    6 添加到github上面                              git push -u origin master   (git push -rebase origin master)
+    git commit -m '22-07-16 项目视频功能完成'
+      报错:
+    src refspec master does not match any         解决: 把本地文件提交到本地仓库,再执行
+    只是报:failed to push refs to                       git pull --rebase origin master  git push origin master
+  
+
+
+
+
+
+
+
+
+</body>
+</html>

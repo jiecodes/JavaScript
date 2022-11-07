@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  vuecli3mall         脚手架3商场       mall
+
+  打包过程 打包main.js(main.js引入了App.vue引入了base.css引入了normalize.css)
+
+  修改脚手架3配置:   自己创建 vue.config.js 里面的配置会和公共的配置合并
+
+  正则表达式  regexp(简写) regular(正规) expression(表达式)
+  计算机没有黑魔法
+  高内聚低耦合
+  硬编码
+  
+  弹性盒子居中
+    height: 40px;
+    width: 20%;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+
+  currentIndex 当前索引号
+  vh(view height) vw  可视区域高度、宽度
+  calc( 100% -93px )                                  Home.vue
+  scoped 针对当前页面的标签起效果
+  ref=""    通过设置ref属性 拿到所在的标签div           Scroll.vue
+
+  .native   监听自定义标签根标签(check-button 自己定义的组件)的事件    
+
+  项目思路: 
+   1 自己创建        
+    .editorconfig         代码规范
+    vue.config.js         配置文件
+    并且引入俩个css文件
+   2 搭建tabbar(下面的导航 选项卡) 抽取到common文件夹     路由映射
+   3 上面的导航
+   4 首页  navbar
+          网络请求
+          导入轮播图  在home.vue导入 swiper    1 注册组件 2 使用组件
+          首页推荐 recommend.vue
+          使用滚动插件 better-scroll
+          回到顶部 backTop
+          解决better-scroll 可滚动区域问题(下拉一半出现问题) @load="imageLoad GoodsListItem.vue
+            防抖:
+          上拉加载更多
+  购物车 弹窗 toast
+  fastclick 库 移动端使用 解决移动端的300ms延迟(判断双击)  禁止页面缩放也可以解决
+    使用: 1 安装 npm install fastclick --save  (运行时依赖)
+  图片懒加载的第三方库  vue-lazyload
+    使用 1 安装
+  移动端单位转换 webpack打包自动转换      postcss-px-to-viewport   对应 postcss.config.js 配置文件
+    使用 1 安装
+  部署: window Linux  (在 安装.html)
+  
+
+
+  防抖节流: .lazy 本质(定时器)    common/utils.js
+    防抖: 在规定的时间内执行多次事件只执行最后一次
+    函数节流(throttle):是指一定时间内执行的操作只执行一次
+
+  $route：是用来获取当前路由的一些信息的。
+  $router：具有某些功能，相当于全局路由器，都可以用。一般用来跳转路由用的。
+  
+  路由跳转传递参数方法:
+  一: 动态路由  router/index.js path:'/detail/:id 或者 /detail/ + 'id''
+  二: query    goods/goodsListItem methods:{this.$router.push({path:'/detail', query: {}})}
+
+  根据商品id(goods_id)查询商品详情
+    https://api-hmugo-web.itheima.net/api/public/v1/goods/detail?goods_id=57422
+    代码: this.$router.push('/detail/' + this.goodsItem.goods_id )
+
+  时间戳(服务器发送的时间,从1970开始,以秒的数字展示)          utils.js
+    1 将时间戳转换为Date对象 new Date(15932432423 * 1000) Date对象需要毫秒
+    2 对date进行格式化,转成对应的字符串
+      date.getYear()
+
+  VueX 详情页的数据传递到购物车里面,可以使用事件总线(但是,有可能开始购物车还没有创建好,就不能使用事件总线),
+       另一种方法vueX,先把购物车商品添加到临时地点(全局地方)Vuex,实现数据共享
+
+  适配  retina(1点2个像素)
+
+
+</body>
+</html>

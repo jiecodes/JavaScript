@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  github上面 滚动
+  安装                              npm install better-scroll --save        (开发时依赖)
+  安装指定版本                       npm install better-scroll@1.13.2 --save        (开发时依赖)
+
+  使用better-scroll 局部滚动(弹簧滚动)
+    1 安装 npm
+    2 Category.vue 导入
+    3 生命周期函数 挂载dom
+
+  应用在移动端的 fastclick 库   移动端使用延迟300ms(判断双击)  禁止页面缩放也可以解决
+    1 安装 npm install fastclick --save  (运行时依赖)           代码 在mian.js里面
+    2 导入
+    3 调用attach函数
+
+  图片懒加载的第三方库  vue-lazyload
+    1 安装 npm install vue-lazyload --save (运行时依赖)         代码 在mian.js里面
+    2 导入
+    3 Vue.use 安装
+    4 修改 img:src -> v-lazy
+
+  移动端单位转换 webpack打包自动转换      postcss-px-to-viewport
+    1 安装 npm install postcss-px-to-viewport --save-dev (开发时依赖)         代码 在mian.js里面
+    2 使用 把 ignore(postcss.config.js) 添加到不需要转换(px转vw)的css类
+    
+  在vue中使用 sass
+    npm install --save-dev sass-loader
+    npm install --save-dev node-sass
+    npm i -D sass
+    lang="scss"
+
+
+  部署(nginx) window: 通过 npm run build 打包 把dist文件放到服务器上面
+      nginx/tomcat 软件/反向代理(主机 -> 操作系统(服务器就是系统可以装window,Linux) -> window(.net)Linux -> nginx/tomcat)   也可以叫服务器(主机里面的一个提供服务的软件)
+  下载:版本    Mainline version: 在做的版本,开发版
+              Stable version: 最新稳定版本,建议使用的版本
+              Legacy version: 遗留老版本的稳定版
+        自己服务器部署 window (nginx)
+          1 2018-12-04	            http://nginx.org/2018.html 指定版本
+            nginx-1.14.2 stable version has been released.
+          2 下载  Stable version 稳定版本
+          3 解压安装包 执行.exe文件 
+          4 把打包后的 dist文件 放到 解压后的 nginx-1.14.2 文件里面 根目录里面html文件里面(把原先的html文件删除,把dist里面的文件都复制到这个文件里面)
+          5 浏览器输入  localhost
+        远程服务器部署 Linux centos 
+          linux 1 使用命令安装nginx  yum install nginx
+                2 开启nginx服务     systemctl start nignx.service 
+
+    之前vuex
+    "vuex": "^3.1.0"
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</body>
+</html>
