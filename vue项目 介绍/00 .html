@@ -8,6 +8,30 @@
 <body>
   easy less 不能用的原因 可能是版本太高
 
+  布局名字 在element-ui官网
+
+  时间戳     value 是插值表达式| 前面的值
+  filters: {
+    showDate(value) {
+      let newDate = new Date(value * 1000)
+      let year = newDate.getFullYear()
+      // let month = newDate.getMonth().toString().padStart(2,0)    俩位数
+      let month = newDate.getMonth() + 1
+      month = month < 10 ? '0' + month : month
+      // let day = newDate.getDay().toString().padStart(2,0)
+      let day = newDate.getDay()
+      day = day < 10 ? '0' + day : day
+
+      let h = newDate.getHours();
+      h = h < 10 ? '0' + h : h    // 判断是否大于10 小于10前面加0
+      let m = newDate.getMinutes();
+      m = m < 10 ? '0' + m : m
+      let s = newDate.getSeconds();
+      s = s < 10 ? '0' + s : s
+      return year + '-' + month + '-' + day + ' ' + h + ':' + m + ':' + s 
+    }
+  }
+
   
 </body>
 </html>

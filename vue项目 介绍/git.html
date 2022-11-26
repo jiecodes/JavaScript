@@ -11,29 +11,68 @@
     1 把github上的项目下载到本地(左边的目录上)         git clone https://github.com/jiecodes/mall.git
     2 把自己的代码拷贝到 下载的项目中
     3 查看 代码状态(先是红色的 没有添加)              git status
-    4 添加代码                                      git add .
+    3 添加代码到本地                                git add .
     5 初始化项目(提交到本地)                         git commit -m '初始化项目'
     6 提交到服务器                                   git push
   方式二
     1 在自己的项目下
     2 先在自己的文件夹下创建.git                     git init
-    3 添加代码                                      git add .
-    4 初始化项目(提交到本地)                         git commit -m '初始化项目'
-    5 把本地的git和github上的git联系起来             git remote add origin https://github.com/jiecodes/mall.git
+    3 添加代码到本地                                git add .
+    4 把本地的git和github上的git联系起来             git remote add origin https://github.com/jiecodes/mall.git
       删除关联的origin的远程库(上一步5 报错)          git remote rm origin 
-    6 添加到github上面                              git push -u origin master   (git push -rebase origin master)
-    git commit -m '22-07-16 项目视频功能完成'
-      报错:
-    src refspec master does not match any         解决: 把本地文件提交到本地仓库,再执行
-    只是报:failed to push refs to                       git pull --rebase origin master  git push origin master
-    fatal: unable to access
+    5 初始化项目(提交到本地)                         git commit -m '初始化项目'
+                                                   git branch -M master
+    6 添加到github上面                              git push origin master git push -u origin master   (git push -rebase origin master)
+                                                   git push --set-upstream origin master
 
-    创建分支 git branch branch1
-    切换分支 git checkout branch1
+  提交到副分支(先删除 .git文件) 创建项目时 下面啥也不用勾选(就写个项目名 项目描述 不然超时)
+    1 本地git与云端联系                             git remote add origin https://github.com/jiecodes/mall.git
+    2 创建切换副分支                                git checkout -b main
+    3 添加代码到本地                                git add .
+    4 初始化项目(提交到本地)                        git commit -m '初始化项目'
+    5 提交到远程副分支                              git push -u origin main (第一次提交副分支)
+    https://github.com/jiecodes/JavaScript.git '更新 vue项目介绍'
+  再次提交
+    3 4 5(git push 远程仓库已有远程分支就不用-u 本地副分支对应远程副分支)
+    在主分支操作:把副分支合并到主分支 
+       1 切换主分支(git checkout master) 
+       2 (把主分支master的代码 和 副分支branch1合并) git merge branch1(副分支)  (本地)  
+       3 然后在通过 git push 到云端  
+    
+      报错: 
+    只是报:failed to push refs to                  git pull --rebase origin master  git push origin master
+    src refspec master does not match any         解决: 1 把本地文件提交到本地仓库,再执行
+                                                        2 没有加md文件
+                                                        3 创建分支
+    fatal: unable to access                            git config --global --unset http.proxy
+                                                       git config --global --unset https.proxy
+    On branch main   Changes not staged for commit:  
+    Timed out                                              github未响应 一直提交
+    OpenSSL SSL_read: Connection was reset, errno 10054     github未响应 一直提交
 
 
+    查看本地分支                    git branch    
+    查看本地远程分支                git branch -a   
+    查看远程仓库分支                git branch -r
+    创建分支                        git branch branch1         切换分支 git checkout branch1
+    删除分支                        git branch -d branch1
+    删除远程仓库                    git push origin :main            
+    创建切换分支(本地)               git checkout -b branch1  
+    远程仓库创建相同的副分支          git push -u origin branch1
 
+    克隆指定分支                  git clone -b main https://github.com/jiecodes/mall.git
+    清屏                          cls
+    
+    git push --set-upstream origin main
+    查看提交的哪些文件             git ls-files 
 
+    把远程仓库内容拷贝到本地       git checkout -- 文件名
+    删除文件                      git rm 文件名
+
+    把本地分支合与远程分支联系      git checkout -b main origin/main
+    把branch1添加到主分支上(本地)  1 切换到主分支上(git checkout 主分支)   2 git merge branch1 
+    删除分支                      git branch -d branch1
+    
 
 
 
